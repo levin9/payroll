@@ -1,0 +1,40 @@
+{
+    "list": [{
+            "id": 1,
+            "deptname": "IT部",
+            "fullName": "张三",
+            "monthId":"201910",
+            "amount": 10000,
+            "adjestRemark": "工程师",
+            "create_date": "2019-10-12"
+        },
+        {
+            "id": 2,
+            "deptname": "IT部",
+            "fullName": "里四",
+            "monthId":"201910",
+            "amount": 10000,
+            "adjestRemark": "工程师",
+            "create_date": "2019-10-12"
+        },
+        {
+            "id": 3,
+            "deptname": "IT部",
+            "fullName": "王五",
+            "monthId":"201910",
+            "amount": 10000,
+            "adjestRemark": "工程师",
+            "create_date": "2019-10-12"
+        },
+        {
+            "id": 4,
+            "deptname": "IT部",
+            "fullName": "赵柳",
+            "monthId":"201910",
+            "amount": 10000,
+            "adjestRemark": "工程师",
+            "create_date": "2019-10-12"
+        }
+    ],
+    "pageTotal": 4
+}

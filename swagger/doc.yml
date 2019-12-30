@@ -1,0 +1,6657 @@
+swagger: "2.0"
+info:
+  description: "A GinBro RESTful APIs"
+  version: "1.0.0"
+  title: "GinBro RESTful APIs Application"
+host: "127.0.0.1:5555"
+basePath: "/api/v1"
+
+schemes:
+- "http"
+paths:
+  
+  
+  /g-demo:
+    get:
+      tags:
+      - "g-demo"
+      summary: "get all g-demo by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/GDemoPagination"
+    post:
+      tags:
+      - "g-demo"
+      summary: "create g-demo"
+      description: "create g-demo"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create g-demo"
+        required: true
+        schema:
+          $ref: "#/definitions/GDemo"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "g-demo"
+      summary: "update g-demo"
+      description: "update g-demo"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create g-demo"
+        required: true
+        schema:
+          $ref: "#/definitions/GDemo"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /g-demo/{Id}:
+    get:
+      tags:
+      - "g-demo"
+      summary: "get a g-demo by ID"
+      description: "get a g-demo by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of g-demo to return"
+        required: true
+        type:  "integer" 
+        format:  "int64"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/GDemo"
+    delete:
+      tags:
+      - "g-demo"
+      summary: "Destroy a g-demo by ID"
+      description: "delete a g-demo by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of g-demo to delete"
+        required: true
+        type:  "integer" 
+        format:  "int64"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+  
+  /g-menu:
+    get:
+      tags:
+      - "g-menu"
+      summary: "get all g-menu by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/GMenuPagination"
+    post:
+      tags:
+      - "g-menu"
+      summary: "create g-menu"
+      description: "create g-menu"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create g-menu"
+        required: true
+        schema:
+          $ref: "#/definitions/GMenu"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "g-menu"
+      summary: "update g-menu"
+      description: "update g-menu"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create g-menu"
+        required: true
+        schema:
+          $ref: "#/definitions/GMenu"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /g-menu/{Id}:
+    get:
+      tags:
+      - "g-menu"
+      summary: "get a g-menu by ID"
+      description: "get a g-menu by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of g-menu to return"
+        required: true
+        type:  "integer" 
+        format:  "int64"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/GMenu"
+    delete:
+      tags:
+      - "g-menu"
+      summary: "Destroy a g-menu by ID"
+      description: "delete a g-menu by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of g-menu to delete"
+        required: true
+        type:  "integer" 
+        format:  "int64"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+  
+  /g-menu-action:
+    get:
+      tags:
+      - "g-menu-action"
+      summary: "get all g-menu-action by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/GMenuActionPagination"
+    post:
+      tags:
+      - "g-menu-action"
+      summary: "create g-menu-action"
+      description: "create g-menu-action"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create g-menu-action"
+        required: true
+        schema:
+          $ref: "#/definitions/GMenuAction"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "g-menu-action"
+      summary: "update g-menu-action"
+      description: "update g-menu-action"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create g-menu-action"
+        required: true
+        schema:
+          $ref: "#/definitions/GMenuAction"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /g-menu-action/{Id}:
+    get:
+      tags:
+      - "g-menu-action"
+      summary: "get a g-menu-action by ID"
+      description: "get a g-menu-action by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of g-menu-action to return"
+        required: true
+        type:  "integer" 
+        format:  "int64"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/GMenuAction"
+    delete:
+      tags:
+      - "g-menu-action"
+      summary: "Destroy a g-menu-action by ID"
+      description: "delete a g-menu-action by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of g-menu-action to delete"
+        required: true
+        type:  "integer" 
+        format:  "int64"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+  
+  /g-menu-resource:
+    get:
+      tags:
+      - "g-menu-resource"
+      summary: "get all g-menu-resource by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/GMenuResourcePagination"
+    post:
+      tags:
+      - "g-menu-resource"
+      summary: "create g-menu-resource"
+      description: "create g-menu-resource"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create g-menu-resource"
+        required: true
+        schema:
+          $ref: "#/definitions/GMenuResource"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "g-menu-resource"
+      summary: "update g-menu-resource"
+      description: "update g-menu-resource"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create g-menu-resource"
+        required: true
+        schema:
+          $ref: "#/definitions/GMenuResource"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /g-menu-resource/{Id}:
+    get:
+      tags:
+      - "g-menu-resource"
+      summary: "get a g-menu-resource by ID"
+      description: "get a g-menu-resource by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of g-menu-resource to return"
+        required: true
+        type:  "integer" 
+        format:  "int64"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/GMenuResource"
+    delete:
+      tags:
+      - "g-menu-resource"
+      summary: "Destroy a g-menu-resource by ID"
+      description: "delete a g-menu-resource by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of g-menu-resource to delete"
+        required: true
+        type:  "integer" 
+        format:  "int64"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+  
+  /g-role:
+    get:
+      tags:
+      - "g-role"
+      summary: "get all g-role by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/GRolePagination"
+    post:
+      tags:
+      - "g-role"
+      summary: "create g-role"
+      description: "create g-role"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create g-role"
+        required: true
+        schema:
+          $ref: "#/definitions/GRole"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "g-role"
+      summary: "update g-role"
+      description: "update g-role"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create g-role"
+        required: true
+        schema:
+          $ref: "#/definitions/GRole"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /g-role/{Id}:
+    get:
+      tags:
+      - "g-role"
+      summary: "get a g-role by ID"
+      description: "get a g-role by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of g-role to return"
+        required: true
+        type:  "integer" 
+        format:  "int64"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/GRole"
+    delete:
+      tags:
+      - "g-role"
+      summary: "Destroy a g-role by ID"
+      description: "delete a g-role by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of g-role to delete"
+        required: true
+        type:  "integer" 
+        format:  "int64"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+  
+  /g-role-menu:
+    get:
+      tags:
+      - "g-role-menu"
+      summary: "get all g-role-menu by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/GRoleMenuPagination"
+    post:
+      tags:
+      - "g-role-menu"
+      summary: "create g-role-menu"
+      description: "create g-role-menu"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create g-role-menu"
+        required: true
+        schema:
+          $ref: "#/definitions/GRoleMenu"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "g-role-menu"
+      summary: "update g-role-menu"
+      description: "update g-role-menu"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create g-role-menu"
+        required: true
+        schema:
+          $ref: "#/definitions/GRoleMenu"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /g-role-menu/{Id}:
+    get:
+      tags:
+      - "g-role-menu"
+      summary: "get a g-role-menu by ID"
+      description: "get a g-role-menu by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of g-role-menu to return"
+        required: true
+        type:  "integer" 
+        format:  "int64"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/GRoleMenu"
+    delete:
+      tags:
+      - "g-role-menu"
+      summary: "Destroy a g-role-menu by ID"
+      description: "delete a g-role-menu by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of g-role-menu to delete"
+        required: true
+        type:  "integer" 
+        format:  "int64"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+  
+  /g-user:
+    get:
+      tags:
+      - "g-user"
+      summary: "get all g-user by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/GUserPagination"
+    post:
+      tags:
+      - "g-user"
+      summary: "create g-user"
+      description: "create g-user"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create g-user"
+        required: true
+        schema:
+          $ref: "#/definitions/GUser"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "g-user"
+      summary: "update g-user"
+      description: "update g-user"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create g-user"
+        required: true
+        schema:
+          $ref: "#/definitions/GUser"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /g-user/{Id}:
+    get:
+      tags:
+      - "g-user"
+      summary: "get a g-user by ID"
+      description: "get a g-user by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of g-user to return"
+        required: true
+        type:  "integer" 
+        format:  "int64"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/GUser"
+    delete:
+      tags:
+      - "g-user"
+      summary: "Destroy a g-user by ID"
+      description: "delete a g-user by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of g-user to delete"
+        required: true
+        type:  "integer" 
+        format:  "int64"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+  
+  /g-user-role:
+    get:
+      tags:
+      - "g-user-role"
+      summary: "get all g-user-role by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/GUserRolePagination"
+    post:
+      tags:
+      - "g-user-role"
+      summary: "create g-user-role"
+      description: "create g-user-role"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create g-user-role"
+        required: true
+        schema:
+          $ref: "#/definitions/GUserRole"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "g-user-role"
+      summary: "update g-user-role"
+      description: "update g-user-role"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create g-user-role"
+        required: true
+        schema:
+          $ref: "#/definitions/GUserRole"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /g-user-role/{Id}:
+    get:
+      tags:
+      - "g-user-role"
+      summary: "get a g-user-role by ID"
+      description: "get a g-user-role by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of g-user-role to return"
+        required: true
+        type:  "integer" 
+        format:  "int64"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/GUserRole"
+    delete:
+      tags:
+      - "g-user-role"
+      summary: "Destroy a g-user-role by ID"
+      description: "delete a g-user-role by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of g-user-role to delete"
+        required: true
+        type:  "integer" 
+        format:  "int64"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+  
+  /abnormalattendance:
+    get:
+      tags:
+      - "abnormalattendance"
+      summary: "get all abnormalattendance by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/AbnormalattendancePagination"
+    post:
+      tags:
+      - "abnormalattendance"
+      summary: "create abnormalattendance"
+      description: "create abnormalattendance"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create abnormalattendance"
+        required: true
+        schema:
+          $ref: "#/definitions/Abnormalattendance"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "abnormalattendance"
+      summary: "update abnormalattendance"
+      description: "update abnormalattendance"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create abnormalattendance"
+        required: true
+        schema:
+          $ref: "#/definitions/Abnormalattendance"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /abnormalattendance/{Id}:
+    get:
+      tags:
+      - "abnormalattendance"
+      summary: "get a abnormalattendance by ID"
+      description: "get a abnormalattendance by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of abnormalattendance to return"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Abnormalattendance"
+    delete:
+      tags:
+      - "abnormalattendance"
+      summary: "Destroy a abnormalattendance by ID"
+      description: "delete a abnormalattendance by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of abnormalattendance to delete"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+  
+  /attcategory:
+    get:
+      tags:
+      - "attcategory"
+      summary: "get all attcategory by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/AttcategoryPagination"
+    post:
+      tags:
+      - "attcategory"
+      summary: "create attcategory"
+      description: "create attcategory"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create attcategory"
+        required: true
+        schema:
+          $ref: "#/definitions/Attcategory"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "attcategory"
+      summary: "update attcategory"
+      description: "update attcategory"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create attcategory"
+        required: true
+        schema:
+          $ref: "#/definitions/Attcategory"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /attcategory/{Id}:
+    get:
+      tags:
+      - "attcategory"
+      summary: "get a attcategory by ID"
+      description: "get a attcategory by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of attcategory to return"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Attcategory"
+    delete:
+      tags:
+      - "attcategory"
+      summary: "Destroy a attcategory by ID"
+      description: "delete a attcategory by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of attcategory to delete"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+  
+  /attcategorytenant:
+    get:
+      tags:
+      - "attcategorytenant"
+      summary: "get all attcategorytenant by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/AttcategorytenantPagination"
+    post:
+      tags:
+      - "attcategorytenant"
+      summary: "create attcategorytenant"
+      description: "create attcategorytenant"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create attcategorytenant"
+        required: true
+        schema:
+          $ref: "#/definitions/Attcategorytenant"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "attcategorytenant"
+      summary: "update attcategorytenant"
+      description: "update attcategorytenant"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create attcategorytenant"
+        required: true
+        schema:
+          $ref: "#/definitions/Attcategorytenant"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /attcategorytenant/{Id}:
+    get:
+      tags:
+      - "attcategorytenant"
+      summary: "get a attcategorytenant by ID"
+      description: "get a attcategorytenant by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of attcategorytenant to return"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Attcategorytenant"
+    delete:
+      tags:
+      - "attcategorytenant"
+      summary: "Destroy a attcategorytenant by ID"
+      description: "delete a attcategorytenant by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of attcategorytenant to delete"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+  
+  /attendance:
+    get:
+      tags:
+      - "attendance"
+      summary: "get all attendance by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/AttendancePagination"
+    post:
+      tags:
+      - "attendance"
+      summary: "create attendance"
+      description: "create attendance"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create attendance"
+        required: true
+        schema:
+          $ref: "#/definitions/Attendance"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "attendance"
+      summary: "update attendance"
+      description: "update attendance"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create attendance"
+        required: true
+        schema:
+          $ref: "#/definitions/Attendance"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /attendance/{Id}:
+    get:
+      tags:
+      - "attendance"
+      summary: "get a attendance by ID"
+      description: "get a attendance by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of attendance to return"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Attendance"
+    delete:
+      tags:
+      - "attendance"
+      summary: "Destroy a attendance by ID"
+      description: "delete a attendance by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of attendance to delete"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+  
+  /bankaccount:
+    get:
+      tags:
+      - "bankaccount"
+      summary: "get all bankaccount by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/BankaccountPagination"
+    post:
+      tags:
+      - "bankaccount"
+      summary: "create bankaccount"
+      description: "create bankaccount"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create bankaccount"
+        required: true
+        schema:
+          $ref: "#/definitions/Bankaccount"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "bankaccount"
+      summary: "update bankaccount"
+      description: "update bankaccount"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create bankaccount"
+        required: true
+        schema:
+          $ref: "#/definitions/Bankaccount"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /bankaccount/{Id}:
+    get:
+      tags:
+      - "bankaccount"
+      summary: "get a bankaccount by ID"
+      description: "get a bankaccount by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of bankaccount to return"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Bankaccount"
+    delete:
+      tags:
+      - "bankaccount"
+      summary: "Destroy a bankaccount by ID"
+      description: "delete a bankaccount by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of bankaccount to delete"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+  
+  /basemonth:
+    get:
+      tags:
+      - "basemonth"
+      summary: "get all basemonth by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/BasemonthPagination"
+    post:
+      tags:
+      - "basemonth"
+      summary: "create basemonth"
+      description: "create basemonth"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create basemonth"
+        required: true
+        schema:
+          $ref: "#/definitions/Basemonth"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "basemonth"
+      summary: "update basemonth"
+      description: "update basemonth"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create basemonth"
+        required: true
+        schema:
+          $ref: "#/definitions/Basemonth"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /basemonth/{Id}:
+    get:
+      tags:
+      - "basemonth"
+      summary: "get a basemonth by ID"
+      description: "get a basemonth by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of basemonth to return"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Basemonth"
+    delete:
+      tags:
+      - "basemonth"
+      summary: "Destroy a basemonth by ID"
+      description: "delete a basemonth by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of basemonth to delete"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+  
+  /basepayroll:
+    get:
+      tags:
+      - "basepayroll"
+      summary: "get all basepayroll by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/BasepayrollPagination"
+    post:
+      tags:
+      - "basepayroll"
+      summary: "create basepayroll"
+      description: "create basepayroll"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create basepayroll"
+        required: true
+        schema:
+          $ref: "#/definitions/Basepayroll"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "basepayroll"
+      summary: "update basepayroll"
+      description: "update basepayroll"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create basepayroll"
+        required: true
+        schema:
+          $ref: "#/definitions/Basepayroll"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /basepayroll/{Id}:
+    get:
+      tags:
+      - "basepayroll"
+      summary: "get a basepayroll by ID"
+      description: "get a basepayroll by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of basepayroll to return"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Basepayroll"
+    delete:
+      tags:
+      - "basepayroll"
+      summary: "Destroy a basepayroll by ID"
+      description: "delete a basepayroll by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of basepayroll to delete"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+  
+  /messagerequest:
+    get:
+      tags:
+      - "messagerequest"
+      summary: "get all messagerequest by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/MessagerequestPagination"
+    post:
+      tags:
+      - "messagerequest"
+      summary: "create messagerequest"
+      description: "create messagerequest"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create messagerequest"
+        required: true
+        schema:
+          $ref: "#/definitions/Messagerequest"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "messagerequest"
+      summary: "update messagerequest"
+      description: "update messagerequest"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create messagerequest"
+        required: true
+        schema:
+          $ref: "#/definitions/Messagerequest"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /messagerequest/{Id}:
+    get:
+      tags:
+      - "messagerequest"
+      summary: "get a messagerequest by ID"
+      description: "get a messagerequest by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of messagerequest to return"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Messagerequest"
+    delete:
+      tags:
+      - "messagerequest"
+      summary: "Destroy a messagerequest by ID"
+      description: "delete a messagerequest by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of messagerequest to delete"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+  
+  /monthpayroll:
+    get:
+      tags:
+      - "monthpayroll"
+      summary: "get all monthpayroll by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/MonthpayrollPagination"
+    post:
+      tags:
+      - "monthpayroll"
+      summary: "create monthpayroll"
+      description: "create monthpayroll"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create monthpayroll"
+        required: true
+        schema:
+          $ref: "#/definitions/Monthpayroll"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "monthpayroll"
+      summary: "update monthpayroll"
+      description: "update monthpayroll"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create monthpayroll"
+        required: true
+        schema:
+          $ref: "#/definitions/Monthpayroll"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /monthpayroll/{Id}:
+    get:
+      tags:
+      - "monthpayroll"
+      summary: "get a monthpayroll by ID"
+      description: "get a monthpayroll by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of monthpayroll to return"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Monthpayroll"
+    delete:
+      tags:
+      - "monthpayroll"
+      summary: "Destroy a monthpayroll by ID"
+      description: "delete a monthpayroll by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of monthpayroll to delete"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+  
+  /operatelog:
+    get:
+      tags:
+      - "operatelog"
+      summary: "get all operatelog by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/OperatelogPagination"
+    post:
+      tags:
+      - "operatelog"
+      summary: "create operatelog"
+      description: "create operatelog"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create operatelog"
+        required: true
+        schema:
+          $ref: "#/definitions/Operatelog"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "operatelog"
+      summary: "update operatelog"
+      description: "update operatelog"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create operatelog"
+        required: true
+        schema:
+          $ref: "#/definitions/Operatelog"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /operatelog/{Id}:
+    get:
+      tags:
+      - "operatelog"
+      summary: "get a operatelog by ID"
+      description: "get a operatelog by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of operatelog to return"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Operatelog"
+    delete:
+      tags:
+      - "operatelog"
+      summary: "Destroy a operatelog by ID"
+      description: "delete a operatelog by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of operatelog to delete"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+  
+  /payroll:
+    get:
+      tags:
+      - "payroll"
+      summary: "get all payroll by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/PayrollPagination"
+    post:
+      tags:
+      - "payroll"
+      summary: "create payroll"
+      description: "create payroll"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create payroll"
+        required: true
+        schema:
+          $ref: "#/definitions/Payroll"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "payroll"
+      summary: "update payroll"
+      description: "update payroll"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create payroll"
+        required: true
+        schema:
+          $ref: "#/definitions/Payroll"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /payroll/{Id}:
+    get:
+      tags:
+      - "payroll"
+      summary: "get a payroll by ID"
+      description: "get a payroll by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of payroll to return"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Payroll"
+    delete:
+      tags:
+      - "payroll"
+      summary: "Destroy a payroll by ID"
+      description: "delete a payroll by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of payroll to delete"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+  
+  /personal:
+    get:
+      tags:
+      - "personal"
+      summary: "get all personal by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/PersonalPagination"
+    post:
+      tags:
+      - "personal"
+      summary: "create personal"
+      description: "create personal"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create personal"
+        required: true
+        schema:
+          $ref: "#/definitions/Personal"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "personal"
+      summary: "update personal"
+      description: "update personal"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create personal"
+        required: true
+        schema:
+          $ref: "#/definitions/Personal"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /personal/{Id}:
+    get:
+      tags:
+      - "personal"
+      summary: "get a personal by ID"
+      description: "get a personal by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of personal to return"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Personal"
+    delete:
+      tags:
+      - "personal"
+      summary: "Destroy a personal by ID"
+      description: "delete a personal by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of personal to delete"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+  
+  /personfreetax:
+    get:
+      tags:
+      - "personfreetax"
+      summary: "get all personfreetax by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/PersonfreetaxPagination"
+    post:
+      tags:
+      - "personfreetax"
+      summary: "create personfreetax"
+      description: "create personfreetax"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create personfreetax"
+        required: true
+        schema:
+          $ref: "#/definitions/Personfreetax"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "personfreetax"
+      summary: "update personfreetax"
+      description: "update personfreetax"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create personfreetax"
+        required: true
+        schema:
+          $ref: "#/definitions/Personfreetax"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /personfreetax/{Id}:
+    get:
+      tags:
+      - "personfreetax"
+      summary: "get a personfreetax by ID"
+      description: "get a personfreetax by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of personfreetax to return"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Personfreetax"
+    delete:
+      tags:
+      - "personfreetax"
+      summary: "Destroy a personfreetax by ID"
+      description: "delete a personfreetax by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of personfreetax to delete"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+  
+  /personpayroll:
+    get:
+      tags:
+      - "personpayroll"
+      summary: "get all personpayroll by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/PersonpayrollPagination"
+    post:
+      tags:
+      - "personpayroll"
+      summary: "create personpayroll"
+      description: "create personpayroll"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create personpayroll"
+        required: true
+        schema:
+          $ref: "#/definitions/Personpayroll"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "personpayroll"
+      summary: "update personpayroll"
+      description: "update personpayroll"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create personpayroll"
+        required: true
+        schema:
+          $ref: "#/definitions/Personpayroll"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /personpayroll/{Id}:
+    get:
+      tags:
+      - "personpayroll"
+      summary: "get a personpayroll by ID"
+      description: "get a personpayroll by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of personpayroll to return"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Personpayroll"
+    delete:
+      tags:
+      - "personpayroll"
+      summary: "Destroy a personpayroll by ID"
+      description: "delete a personpayroll by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of personpayroll to delete"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+  
+  /tenant:
+    get:
+      tags:
+      - "tenant"
+      summary: "get all tenant by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/TenantPagination"
+    post:
+      tags:
+      - "tenant"
+      summary: "create tenant"
+      description: "create tenant"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create tenant"
+        required: true
+        schema:
+          $ref: "#/definitions/Tenant"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "tenant"
+      summary: "update tenant"
+      description: "update tenant"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create tenant"
+        required: true
+        schema:
+          $ref: "#/definitions/Tenant"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /tenant/{Id}:
+    get:
+      tags:
+      - "tenant"
+      summary: "get a tenant by ID"
+      description: "get a tenant by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of tenant to return"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Tenant"
+    delete:
+      tags:
+      - "tenant"
+      summary: "Destroy a tenant by ID"
+      description: "delete a tenant by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of tenant to delete"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+  
+  /tenantadjustitem:
+    get:
+      tags:
+      - "tenantadjustitem"
+      summary: "get all tenantadjustitem by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/TenantadjustitemPagination"
+    post:
+      tags:
+      - "tenantadjustitem"
+      summary: "create tenantadjustitem"
+      description: "create tenantadjustitem"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create tenantadjustitem"
+        required: true
+        schema:
+          $ref: "#/definitions/Tenantadjustitem"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "tenantadjustitem"
+      summary: "update tenantadjustitem"
+      description: "update tenantadjustitem"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create tenantadjustitem"
+        required: true
+        schema:
+          $ref: "#/definitions/Tenantadjustitem"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /tenantadjustitem/{Id}:
+    get:
+      tags:
+      - "tenantadjustitem"
+      summary: "get a tenantadjustitem by ID"
+      description: "get a tenantadjustitem by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of tenantadjustitem to return"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Tenantadjustitem"
+    delete:
+      tags:
+      - "tenantadjustitem"
+      summary: "Destroy a tenantadjustitem by ID"
+      description: "delete a tenantadjustitem by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of tenantadjustitem to delete"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+  
+  /tenantpayroll:
+    get:
+      tags:
+      - "tenantpayroll"
+      summary: "get all tenantpayroll by pagination"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "where"
+        in: "query"
+        description: "column:value will use sql LIKE for search eg:id:67 will where id >67 eg2: name:eric => where name LIKE '%eric%'"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+      - name: "fields"
+        in: "query"
+        description: "{$tableColumn},{$tableColumn}... "
+        required: false
+        type: "string"
+      - name: "order"
+        in: "query"
+        description: "eg: id desc, name desc"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "sql offset eg: 10"
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        default: "2"
+        description: "limit returning object count"
+        required: false
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/TenantpayrollPagination"
+    post:
+      tags:
+      - "tenantpayroll"
+      summary: "create tenantpayroll"
+      description: "create tenantpayroll"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create tenantpayroll"
+        required: true
+        schema:
+          $ref: "#/definitions/Tenantpayroll"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+    patch:
+      tags:
+      - "tenantpayroll"
+      summary: "update tenantpayroll"
+      description: "update tenantpayroll"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "create tenantpayroll"
+        required: true
+        schema:
+          $ref: "#/definitions/Tenantpayroll"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /tenantpayroll/{Id}:
+    get:
+      tags:
+      - "tenantpayroll"
+      summary: "get a tenantpayroll by ID"
+      description: "get a tenantpayroll by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of tenantpayroll to return"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Tenantpayroll"
+    delete:
+      tags:
+      - "tenantpayroll"
+      summary: "Destroy a tenantpayroll by ID"
+      description: "delete a tenantpayroll by ID"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Id"
+        in: "path"
+        description: "ID of tenantpayroll to delete"
+        required: true
+        type:  "string" 
+        format:  "string"  
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+  
+
+
+definitions:
+  
+  
+  GDemo:
+    type: "object"
+    properties:
+    
+      id:
+        type: "integer"
+        description: ""
+        format: "int32"
+      
+      created_at:
+        type: "string"
+        description: ""
+        format: "date-time"
+      
+      updated_at:
+        type: "string"
+        description: ""
+        format: "date-time"
+      
+      deleted_at:
+        type: "string"
+        description: ""
+        format: "date-time"
+      
+      record_id:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      code:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      name:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      memo:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      status:
+        type: "integer"
+        description: ""
+        format: "int64"
+      
+      creator:
+        type: "string"
+        description: ""
+        format: "string"
+      
+  GDemoPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/GDemo"
+
+  
+  GMenu:
+    type: "object"
+    properties:
+    
+      id:
+        type: "integer"
+        description: ""
+        format: "int32"
+      
+      created_at:
+        type: "string"
+        description: ""
+        format: "date-time"
+      
+      updated_at:
+        type: "string"
+        description: ""
+        format: "date-time"
+      
+      deleted_at:
+        type: "string"
+        description: ""
+        format: "date-time"
+      
+      record_id:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      name:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      sequence:
+        type: "integer"
+        description: ""
+        format: "int64"
+      
+      icon:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      router:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      hidden:
+        type: "integer"
+        description: ""
+        format: "int64"
+      
+      parent_id:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      parent_path:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      creator:
+        type: "string"
+        description: ""
+        format: "string"
+      
+  GMenuPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/GMenu"
+
+  
+  GMenuAction:
+    type: "object"
+    properties:
+    
+      id:
+        type: "integer"
+        description: ""
+        format: "int32"
+      
+      created_at:
+        type: "string"
+        description: ""
+        format: "date-time"
+      
+      updated_at:
+        type: "string"
+        description: ""
+        format: "date-time"
+      
+      deleted_at:
+        type: "string"
+        description: ""
+        format: "date-time"
+      
+      menu_id:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      code:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      name:
+        type: "string"
+        description: ""
+        format: "string"
+      
+  GMenuActionPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/GMenuAction"
+
+  
+  GMenuResource:
+    type: "object"
+    properties:
+    
+      id:
+        type: "integer"
+        description: ""
+        format: "int32"
+      
+      created_at:
+        type: "string"
+        description: ""
+        format: "date-time"
+      
+      updated_at:
+        type: "string"
+        description: ""
+        format: "date-time"
+      
+      deleted_at:
+        type: "string"
+        description: ""
+        format: "date-time"
+      
+      menu_id:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      code:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      name:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      method:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      path:
+        type: "string"
+        description: ""
+        format: "string"
+      
+  GMenuResourcePagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/GMenuResource"
+
+  
+  GRole:
+    type: "object"
+    properties:
+    
+      id:
+        type: "integer"
+        description: ""
+        format: "int32"
+      
+      created_at:
+        type: "string"
+        description: ""
+        format: "date-time"
+      
+      updated_at:
+        type: "string"
+        description: ""
+        format: "date-time"
+      
+      deleted_at:
+        type: "string"
+        description: ""
+        format: "date-time"
+      
+      record_id:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      name:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      sequence:
+        type: "integer"
+        description: ""
+        format: "int64"
+      
+      memo:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      creator:
+        type: "string"
+        description: ""
+        format: "string"
+      
+  GRolePagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/GRole"
+
+  
+  GRoleMenu:
+    type: "object"
+    properties:
+    
+      id:
+        type: "integer"
+        description: ""
+        format: "int32"
+      
+      created_at:
+        type: "string"
+        description: ""
+        format: "date-time"
+      
+      updated_at:
+        type: "string"
+        description: ""
+        format: "date-time"
+      
+      deleted_at:
+        type: "string"
+        description: ""
+        format: "date-time"
+      
+      role_id:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      menu_id:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      action:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      resource:
+        type: "string"
+        description: ""
+        format: "string"
+      
+  GRoleMenuPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/GRoleMenu"
+
+  
+  GUser:
+    type: "object"
+    properties:
+    
+      id:
+        type: "integer"
+        description: ""
+        format: "int32"
+      
+      created_at:
+        type: "string"
+        description: ""
+        format: "date-time"
+      
+      updated_at:
+        type: "string"
+        description: ""
+        format: "date-time"
+      
+      deleted_at:
+        type: "string"
+        description: ""
+        format: "date-time"
+      
+      record_id:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      user_name:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      real_name:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      password:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      email:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      phone:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      status:
+        type: "integer"
+        description: ""
+        format: "int64"
+      
+      creator:
+        type: "string"
+        description: ""
+        format: "string"
+      
+  GUserPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/GUser"
+
+  
+  GUserRole:
+    type: "object"
+    properties:
+    
+      id:
+        type: "integer"
+        description: ""
+        format: "int32"
+      
+      created_at:
+        type: "string"
+        description: ""
+        format: "date-time"
+      
+      updated_at:
+        type: "string"
+        description: ""
+        format: "date-time"
+      
+      deleted_at:
+        type: "string"
+        description: ""
+        format: "date-time"
+      
+      user_id:
+        type: "string"
+        description: ""
+        format: "string"
+      
+      role_id:
+        type: "string"
+        description: ""
+        format: "string"
+      
+  GUserRolePagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/GUserRole"
+
+  
+  Abnormalattendance:
+    type: "object"
+    properties:
+    
+      id:
+        type: "string"
+        description: "ID"
+        format: "string"
+      
+      tenant_id:
+        type: "string"
+        description: "租户编号"
+        format: "string"
+      
+      person_id:
+        type: "string"
+        description: "雇员编号"
+        format: "string"
+      
+      att_type:
+        type: "string"
+        description: "考勤类别"
+        format: "string"
+      
+      att_name:
+        type: "string"
+        description: "类别名称"
+        format: "string"
+      
+      start_time:
+        type: "string"
+        description: "开始时间"
+        format: "date-time"
+      
+      end_time:
+        type: "string"
+        description: "结束时间"
+        format: "date-time"
+      
+      amount:
+        type: "number"
+        description: "数值"
+        format: "float"
+      
+      biz_no:
+        type: "string"
+        description: "单号"
+        format: "string"
+      
+      fee:
+        type: "number"
+        description: "考勤扣费"
+        format: "float"
+      
+      rule_name:
+        type: "string"
+        description: "扣费规则"
+        format: "string"
+      
+      formula_text:
+        type: "string"
+        description: "扣费公式"
+        format: "string"
+      
+      f_enabled_mark:
+        type: "integer"
+        description: "有效标志0否1是"
+        format: "int64"
+      
+      f_create_user_id:
+        type: "string"
+        description: "创建人ID"
+        format: "string"
+      
+      f_modify_user_name:
+        type: "string"
+        description: "编辑人"
+        format: "string"
+      
+      f_modify_user_id:
+        type: "string"
+        description: "编辑人ID"
+        format: "string"
+      
+      f_delete_mark:
+        type: "integer"
+        description: "删除标记0否1是"
+        format: "int64"
+      
+      f_sort_code:
+        type: "integer"
+        description: "排序码"
+        format: "int64"
+      
+      f_modify_date:
+        type: "string"
+        description: "编辑日期"
+        format: "date-time"
+      
+      f_create_user_name:
+        type: "string"
+        description: "创建人"
+        format: "string"
+      
+      f_create_date:
+        type: "string"
+        description: "创建时间"
+        format: "date-time"
+      
+      f_description:
+        type: "string"
+        description: "备注"
+        format: "string"
+      
+  AbnormalattendancePagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/Abnormalattendance"
+
+  
+  Attcategory:
+    type: "object"
+    properties:
+    
+      id:
+        type: "string"
+        description: "Id"
+        format: "string"
+      
+      holiday_code:
+        type: "string"
+        description: "编号"
+        format: "string"
+      
+      holiday_name:
+        type: "string"
+        description: "名称"
+        format: "string"
+      
+      calc_type:
+        type: "integer"
+        description: "计算类别"
+        format: "int64"
+      
+      is_spec_calc:
+        type: "integer"
+        description: "特殊计算规则"
+        format: "int64"
+      
+      is_on_slip:
+        type: "integer"
+        description: "是否显示在工资单上"
+        format: "int64"
+      
+      att_field_name:
+        type: "string"
+        description: "考勤存储的字段"
+        format: "string"
+      
+      field_name:
+        type: "string"
+        description: "存储字段"
+        format: "string"
+      
+      formula:
+        type: "string"
+        description: "公式"
+        format: "string"
+      
+      formula_remark:
+        type: "string"
+        description: "公式备注"
+        format: "string"
+      
+      sql_formula:
+        type: "string"
+        description: "SQL公式，没有用的字段"
+        format: "string"
+      
+      f_enabled_mark:
+        type: "integer"
+        description: "有效标志0否1是"
+        format: "int64"
+      
+      f_create_user_id:
+        type: "string"
+        description: "创建人ID"
+        format: "string"
+      
+      f_modify_user_name:
+        type: "string"
+        description: "编辑人"
+        format: "string"
+      
+      f_modify_user_id:
+        type: "string"
+        description: "编辑人ID"
+        format: "string"
+      
+      f_delete_mark:
+        type: "integer"
+        description: "删除标记0否1是"
+        format: "int64"
+      
+      f_sort_code:
+        type: "integer"
+        description: "排序码"
+        format: "int64"
+      
+      f_modify_date:
+        type: "string"
+        description: "编辑日期"
+        format: "date-time"
+      
+      f_create_user_name:
+        type: "string"
+        description: "创建人"
+        format: "string"
+      
+      f_create_date:
+        type: "string"
+        description: "创建时间"
+        format: "date-time"
+      
+      f_description:
+        type: "string"
+        description: "备注"
+        format: "string"
+      
+  AttcategoryPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/Attcategory"
+
+  
+  Attcategorytenant:
+    type: "object"
+    properties:
+    
+      holiday_category_id:
+        type: "string"
+        description: "Id"
+        format: "string"
+      
+      tenant_id:
+        type: "string"
+        description: "租户编号"
+        format: "string"
+      
+      holiday_code:
+        type: "string"
+        description: "编号"
+        format: "string"
+      
+      tenant_holiday_name:
+        type: "string"
+        description: "名称"
+        format: "string"
+      
+      tenant_formula:
+        type: "string"
+        description: "公式"
+        format: "string"
+      
+      tenant_formula_remark:
+        type: "string"
+        description: "公式备注"
+        format: "string"
+      
+      is_on_slip:
+        type: "integer"
+        description: "是否显示在工资单上"
+        format: "int64"
+      
+      is_used:
+        type: "integer"
+        description: "是否启用"
+        format: "int64"
+      
+      sqltenant_formula:
+        type: "string"
+        description: "SQL公式"
+        format: "string"
+      
+      f_enabled_mark:
+        type: "integer"
+        description: "有效标志0否1是"
+        format: "int64"
+      
+      f_create_user_id:
+        type: "string"
+        description: "创建人ID"
+        format: "string"
+      
+      f_modify_user_name:
+        type: "string"
+        description: "编辑人"
+        format: "string"
+      
+      f_modify_user_id:
+        type: "string"
+        description: "编辑人ID"
+        format: "string"
+      
+      f_delete_mark:
+        type: "integer"
+        description: "删除标记0否1是"
+        format: "int64"
+      
+      f_sort_code:
+        type: "integer"
+        description: "排序码"
+        format: "int64"
+      
+      f_modify_date:
+        type: "string"
+        description: "编辑日期"
+        format: "date-time"
+      
+      f_create_user_name:
+        type: "string"
+        description: "创建人"
+        format: "string"
+      
+      f_create_date:
+        type: "string"
+        description: "创建时间"
+        format: "date-time"
+      
+      f_description:
+        type: "string"
+        description: "备注"
+        format: "string"
+      
+  AttcategorytenantPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/Attcategorytenant"
+
+  
+  Attendance:
+    type: "object"
+    properties:
+    
+      id:
+        type: "string"
+        description: "编号"
+        format: "string"
+      
+      tenant_id:
+        type: "string"
+        description: "租户编号"
+        format: "string"
+      
+      person_id:
+        type: "string"
+        description: "雇员编号"
+        format: "string"
+      
+      month_id:
+        type: "string"
+        description: "月份编号"
+        format: "string"
+      
+      chi_dao_count:
+        type: "number"
+        description: "迟到次数"
+        format: "float"
+      
+      chi_dao_num:
+        type: "number"
+        description: "迟到时间"
+        format: "float"
+      
+      zaotui_count:
+        type: "number"
+        description: "早退次数"
+        format: "float"
+      
+      zaotui_num:
+        type: "number"
+        description: "早退时间"
+        format: "float"
+      
+      tiaoxiu_num:
+        type: "number"
+        description: "调休"
+        format: "float"
+      
+      shi_jia_num:
+        type: "number"
+        description: "事假"
+        format: "float"
+      
+      sick_num:
+        type: "number"
+        description: "病假"
+        format: "float"
+      
+      bu_rv_jia_num:
+        type: "number"
+        description: "哺乳假"
+        format: "float"
+      
+      pei_chan_jia_num:
+        type: "number"
+        description: "陪产假"
+        format: "float"
+      
+      chan_jia_num:
+        type: "number"
+        description: "产假"
+        format: "float"
+      
+      hun_jia_num:
+        type: "number"
+        description: "婚假"
+        format: "float"
+      
+      sang_jia_num:
+        type: "number"
+        description: "丧假"
+        format: "float"
+      
+      kuanggong_num:
+        type: "number"
+        description: "旷工"
+        format: "float"
+      
+      kong_bai_num:
+        type: "number"
+        description: "考勤空白"
+        format: "float"
+      
+      dai_xin_shi_jia_num:
+        type: "number"
+        description: "带薪事假"
+        format: "float"
+      
+      plan_work_day:
+        type: "number"
+        description: "应上班天数"
+        format: "float"
+      
+      actual_work_day:
+        type: "number"
+        description: "实际出勤天数"
+        format: "float"
+      
+      annual_leave_num:
+        type: "number"
+        description: "年假"
+        format: "float"
+      
+      f_enabled_mark:
+        type: "number"
+        description: "有效标志0否1是"
+        format: "float"
+      
+      f_create_user_id:
+        type: "string"
+        description: "创建人ID"
+        format: "string"
+      
+      f_modify_user_name:
+        type: "string"
+        description: "编辑人"
+        format: "string"
+      
+      f_modify_user_id:
+        type: "string"
+        description: "编辑人ID"
+        format: "string"
+      
+      f_delete_mark:
+        type: "integer"
+        description: "删除标记0否1是"
+        format: "int64"
+      
+      f_sort_code:
+        type: "integer"
+        description: "排序码"
+        format: "int64"
+      
+      f_modify_date:
+        type: "string"
+        description: "编辑日期"
+        format: "date-time"
+      
+      f_create_user_name:
+        type: "string"
+        description: "创建人"
+        format: "string"
+      
+      f_create_date:
+        type: "string"
+        description: "创建时间"
+        format: "date-time"
+      
+      f_description:
+        type: "string"
+        description: "备注"
+        format: "string"
+      
+  AttendancePagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/Attendance"
+
+  
+  Bankaccount:
+    type: "object"
+    properties:
+    
+      id:
+        type: "string"
+        description: "编号"
+        format: "string"
+      
+      person_id:
+        type: "string"
+        description: "员工编号"
+        format: "string"
+      
+      item_index:
+        type: "integer"
+        description: "序号"
+        format: "int64"
+      
+      bank_name:
+        type: "string"
+        description: "开户行"
+        format: "string"
+      
+      bank_branch:
+        type: "string"
+        description: "开户分行"
+        format: "string"
+      
+      account_no:
+        type: "string"
+        description: "账号"
+        format: "string"
+      
+      account_name:
+        type: "string"
+        description: "账号姓名"
+        format: "string"
+      
+      f_enabled_mark:
+        type: "integer"
+        description: "有效标志0否1是"
+        format: "int64"
+      
+      f_create_user_id:
+        type: "string"
+        description: "创建人ID"
+        format: "string"
+      
+      f_modify_user_name:
+        type: "string"
+        description: "编辑人"
+        format: "string"
+      
+      f_modify_user_id:
+        type: "string"
+        description: "编辑人ID"
+        format: "string"
+      
+      f_delete_mark:
+        type: "integer"
+        description: "删除标记0否1是"
+        format: "int64"
+      
+      f_sort_code:
+        type: "integer"
+        description: "排序码"
+        format: "int64"
+      
+      f_modify_date:
+        type: "string"
+        description: "编辑日期"
+        format: "date-time"
+      
+      f_create_user_name:
+        type: "string"
+        description: "创建人"
+        format: "string"
+      
+      f_create_date:
+        type: "string"
+        description: "创建时间"
+        format: "date-time"
+      
+      f_description:
+        type: "string"
+        description: "备注"
+        format: "string"
+      
+  BankaccountPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/Bankaccount"
+
+  
+  Basemonth:
+    type: "object"
+    properties:
+    
+      id:
+        type: "string"
+        description: "编号"
+        format: "string"
+      
+      month_id:
+        type: "string"
+        description: "月份编号"
+        format: "string"
+      
+      first_code:
+        type: "string"
+        description: "年份"
+        format: "string"
+      
+      second_code:
+        type: "string"
+        description: "月份"
+        format: "string"
+      
+      month_name:
+        type: "string"
+        description: "名称"
+        format: "string"
+      
+      tenant_id:
+        type: "string"
+        description: "租户编号"
+        format: "string"
+      
+      start_date:
+        type: "string"
+        description: "开始时间"
+        format: "date-time"
+      
+      end_date:
+        type: "string"
+        description: "结束时间"
+        format: "date-time"
+      
+      she_bao_due_date:
+        type: "string"
+        description: "当月购买社保的日期"
+        format: "date-time"
+      
+      workday_qty:
+        type: "integer"
+        description: "工作天数"
+        format: "int64"
+      
+      state:
+        type: "integer"
+        description: "状态"
+        format: "int64"
+      
+      state_name:
+        type: "string"
+        description: "状态Name"
+        format: "string"
+      
+      f_enabled_mark:
+        type: "integer"
+        description: "有效标志0否1是"
+        format: "int64"
+      
+      f_create_user_id:
+        type: "string"
+        description: "创建人ID"
+        format: "string"
+      
+      f_modify_user_name:
+        type: "string"
+        description: "编辑人"
+        format: "string"
+      
+      f_modify_user_id:
+        type: "string"
+        description: "编辑人ID"
+        format: "string"
+      
+      f_delete_mark:
+        type: "integer"
+        description: "删除标记0否1是"
+        format: "int64"
+      
+      f_sort_code:
+        type: "integer"
+        description: "排序码"
+        format: "int64"
+      
+      f_modify_date:
+        type: "string"
+        description: "编辑日期"
+        format: "date-time"
+      
+      f_create_user_name:
+        type: "string"
+        description: "创建人"
+        format: "string"
+      
+      f_create_date:
+        type: "string"
+        description: "创建时间"
+        format: "date-time"
+      
+      f_description:
+        type: "string"
+        description: "备注"
+        format: "string"
+      
+  BasemonthPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/Basemonth"
+
+  
+  Basepayroll:
+    type: "object"
+    properties:
+    
+      pid:
+        type: "string"
+        description: "编号"
+        format: "string"
+      
+      standard_name:
+        type: "string"
+        description: "标准名称"
+        format: "string"
+      
+      field_name:
+        type: "string"
+        description: "字段名称"
+        format: "string"
+      
+      formula:
+        type: "string"
+        description: "日薪公式"
+        format: "string"
+      
+      formula_mem:
+        type: "string"
+        description: "公式备注"
+        format: "string"
+      
+      is_must_used:
+        type: "integer"
+        description: "必须启用"
+        format: "int64"
+      
+      is_add:
+        type: "integer"
+        description: "是否加减项"
+        format: "int64"
+      
+      f_enabled_mark:
+        type: "integer"
+        description: "有效标志0否1是"
+        format: "int64"
+      
+      f_create_user_id:
+        type: "string"
+        description: "创建人ID"
+        format: "string"
+      
+      f_modify_user_name:
+        type: "string"
+        description: "编辑人"
+        format: "string"
+      
+      f_modify_user_id:
+        type: "string"
+        description: "编辑人ID"
+        format: "string"
+      
+      f_delete_mark:
+        type: "integer"
+        description: "删除标记0否1是"
+        format: "int64"
+      
+      f_sort_code:
+        type: "integer"
+        description: "排序码"
+        format: "int64"
+      
+      f_modify_date:
+        type: "string"
+        description: "编辑日期"
+        format: "date-time"
+      
+      f_create_user_name:
+        type: "string"
+        description: "创建人"
+        format: "string"
+      
+      f_create_date:
+        type: "string"
+        description: "创建时间"
+        format: "date-time"
+      
+      f_description:
+        type: "string"
+        description: "备注"
+        format: "string"
+      
+  BasepayrollPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/Basepayroll"
+
+  
+  Messagerequest:
+    type: "object"
+    properties:
+    
+      id:
+        type: "string"
+        description: "编号"
+        format: "string"
+      
+      rquest_id:
+        type: "string"
+        description: "请求编号"
+        format: "string"
+      
+      tenant_id:
+        type: "string"
+        description: "商户编号"
+        format: "string"
+      
+      req_user_id:
+        type: "string"
+        description: "请求用户ID"
+        format: "string"
+      
+      req_user_name:
+        type: "string"
+        description: "请求用户姓名"
+        format: "string"
+      
+      rec_ids:
+        type: "string"
+        description: "接收Id"
+        format: "string"
+      
+      rec_mobile_ids:
+        type: "string"
+        description: "接收者姓名"
+        format: "string"
+      
+      text_body:
+        type: "string"
+        description: "消息正文"
+        format: "string"
+      
+      plan_time:
+        type: "string"
+        description: "计划时间"
+        format: "date-time"
+      
+      state:
+        type: "integer"
+        description: "计划状态"
+        format: "int64"
+      
+      try_num:
+        type: "integer"
+        description: "尝试次数"
+        format: "int64"
+      
+      f_enabled_mark:
+        type: "integer"
+        description: "有效标志0否1是"
+        format: "int64"
+      
+      f_create_user_id:
+        type: "string"
+        description: "创建人ID"
+        format: "string"
+      
+      f_modify_user_name:
+        type: "string"
+        description: "编辑人"
+        format: "string"
+      
+      f_modify_user_id:
+        type: "string"
+        description: "编辑人ID"
+        format: "string"
+      
+      f_delete_mark:
+        type: "integer"
+        description: "删除标记0否1是"
+        format: "int64"
+      
+      f_sort_code:
+        type: "integer"
+        description: "排序码"
+        format: "int64"
+      
+      f_modify_date:
+        type: "string"
+        description: "编辑日期"
+        format: "date-time"
+      
+      f_create_user_name:
+        type: "string"
+        description: "创建人"
+        format: "string"
+      
+      f_create_date:
+        type: "string"
+        description: "创建时间"
+        format: "date-time"
+      
+      f_description:
+        type: "string"
+        description: "备注"
+        format: "string"
+      
+  MessagerequestPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/Messagerequest"
+
+  
+  Monthpayroll:
+    type: "object"
+    properties:
+    
+      id:
+        type: "string"
+        description: "ID"
+        format: "string"
+      
+      tenant_id:
+        type: "string"
+        description: "租户编号"
+        format: "string"
+      
+      month_id:
+        type: "string"
+        description: "月份编号"
+        format: "string"
+      
+      person_id:
+        type: "string"
+        description: "雇员编号"
+        format: "string"
+      
+      real_name:
+        type: "string"
+        description: "姓名"
+        format: "string"
+      
+      dept_name:
+        type: "string"
+        description: "部门"
+        format: "string"
+      
+      job_level:
+        type: "string"
+        description: "职级"
+        format: "string"
+      
+      job_name:
+        type: "string"
+        description: "职务"
+        format: "string"
+      
+      monthly_pay_amount:
+        type: "number"
+        description: "月薪"
+        format: "float"
+      
+      work_day:
+        type: "integer"
+        description: "工作天数"
+        format: "int64"
+      
+      plan_work_day:
+        type: "integer"
+        description: "应上班天数"
+        format: "int64"
+      
+      actual_work_day:
+        type: "integer"
+        description: "实际出勤天数"
+        format: "int64"
+      
+      basic_sallary_amount:
+        type: "number"
+        description: "基本工资"
+        format: "float"
+      
+      kpiamout:
+        type: "number"
+        description: "绩效工资"
+        format: "float"
+      
+      traffic_fee:
+        type: "number"
+        description: "交通补贴"
+        format: "float"
+      
+      food_fee:
+        type: "number"
+        description: "餐费补贴"
+        format: "float"
+      
+      att_fee:
+        type: "number"
+        description: "假期扣款"
+        format: "float"
+      
+      att_award_fee:
+        type: "number"
+        description: "考勤奖励"
+        format: "float"
+      
+      chi_dao_count:
+        type: "integer"
+        description: "迟到次数"
+        format: "int64"
+      
+      chi_dao_fee:
+        type: "number"
+        description: "迟到扣款"
+        format: "float"
+      
+      zaotui_count:
+        type: "integer"
+        description: "早退次数"
+        format: "int64"
+      
+      zaotui_fee:
+        type: "number"
+        description: "早退扣款"
+        format: "float"
+      
+      sick_fee:
+        type: "number"
+        description: "病假扣款"
+        format: "float"
+      
+      sick_num:
+        type: "number"
+        description: "病假时间"
+        format: "float"
+      
+      shi_jia_fee:
+        type: "number"
+        description: "事假扣款"
+        format: "float"
+      
+      shi_jia_num:
+        type: "number"
+        description: "事假时间"
+        format: "float"
+      
+      annual_leave_num:
+        type: "number"
+        description: "年假时间"
+        format: "float"
+      
+      annual_leave_fee:
+        type: "number"
+        description: "年假扣费"
+        format: "float"
+      
+      professiona_fee:
+        type: "number"
+        description: "职称补贴"
+        format: "float"
+      
+      job_allowance:
+        type: "number"
+        description: "岗位津贴"
+        format: "float"
+      
+      assign_fee:
+        type: "number"
+        description: "外派项目补贴"
+        format: "float"
+      
+      mobile_fee:
+        type: "number"
+        description: "通讯补贴"
+        format: "float"
+      
+      she_bao_fee:
+        type: "number"
+        description: "社保费"
+        format: "float"
+      
+      house_fee:
+        type: "number"
+        description: "公积金费用"
+        format: "float"
+      
+      spec_job_allowance:
+        type: "number"
+        description: "特殊岗位津贴"
+        format: "float"
+      
+      sang_jia_fee:
+        type: "number"
+        description: "丧假"
+        format: "float"
+      
+      hun_jia_fee:
+        type: "number"
+        description: "婚假"
+        format: "float"
+      
+      bu_rv_jia_fee:
+        type: "number"
+        description: "哺乳假"
+        format: "float"
+      
+      chan_jia_fee:
+        type: "number"
+        description: "产假"
+        format: "float"
+      
+      pei_chan_jia_fee:
+        type: "number"
+        description: "陪产假"
+        format: "float"
+      
+      kong_bai_fee:
+        type: "number"
+        description: "考勤空白扣费"
+        format: "float"
+      
+      que_qin_fee:
+        type: "number"
+        description: "缺勤"
+        format: "float"
+      
+      tiao_xiu_fee:
+        type: "number"
+        description: "调休"
+        format: "float"
+      
+      dai_xin_jia_fee:
+        type: "number"
+        description: "带薪假"
+        format: "float"
+      
+      personal_tax:
+        type: "number"
+        description: "个人所得税"
+        format: "float"
+      
+      wages_payable_amount:
+        type: "number"
+        description: "应发工资"
+        format: "float"
+      
+      actual_payable_amount:
+        type: "number"
+        description: "实发工资"
+        format: "float"
+      
+      adjust_fee:
+        type: "number"
+        description: "调整项"
+        format: "float"
+      
+      free_tax_amount:
+        type: "number"
+        description: "每月免税金额"
+        format: "float"
+      
+      income_tax_amount:
+        type: "number"
+        description: "代扣个税"
+        format: "float"
+      
+      standard_she_bao_amount:
+        type: "number"
+        description: "社保基数"
+        format: "float"
+      
+      standard_house_amount:
+        type: "number"
+        description: "公积金基数"
+        format: "float"
+      
+      cust_sub_fee2:
+        type: "number"
+        description: "自定义减项1"
+        format: "float"
+      
+      cust_sub_fee1:
+        type: "number"
+        description: "自定义减项2"
+        format: "float"
+      
+      cust_add_fee2:
+        type: "number"
+        description: "自定义加项1"
+        format: "float"
+      
+      cust_add_fee1:
+        type: "number"
+        description: "自定义加项2"
+        format: "float"
+      
+      ext_info:
+        type: "string"
+        description: "扩展字段"
+        format: "string"
+      
+      f_enabled_mark:
+        type: "integer"
+        description: "有效标志0否1是"
+        format: "int64"
+      
+      f_create_user_id:
+        type: "string"
+        description: "创建人ID"
+        format: "string"
+      
+      f_modify_user_name:
+        type: "string"
+        description: "编辑人"
+        format: "string"
+      
+      f_modify_user_id:
+        type: "string"
+        description: "编辑人ID"
+        format: "string"
+      
+      f_delete_mark:
+        type: "string"
+        description: "删除标记0否1是"
+        format: "string"
+      
+      f_sort_code:
+        type: "integer"
+        description: "排序码"
+        format: "int64"
+      
+      f_modify_date:
+        type: "string"
+        description: "编辑日期"
+        format: "date-time"
+      
+      f_create_user_name:
+        type: "string"
+        description: "创建人"
+        format: "string"
+      
+      f_create_date:
+        type: "string"
+        description: "创建时间"
+        format: "date-time"
+      
+      f_description:
+        type: "string"
+        description: "备注"
+        format: "string"
+      
+  MonthpayrollPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/Monthpayroll"
+
+  
+  Operatelog:
+    type: "object"
+    properties:
+    
+      id:
+        type: "string"
+        description: "编号"
+        format: "string"
+      
+      tenant_id:
+        type: "string"
+        description: "租户编号"
+        format: "string"
+      
+      month_id:
+        type: "string"
+        description: "月份"
+        format: "string"
+      
+      operate_name:
+        type: "string"
+        description: "操作名称"
+        format: "string"
+      
+      operate_index:
+        type: "integer"
+        description: "操作序号"
+        format: "int64"
+      
+      state_name:
+        type: "string"
+        description: "状态名称"
+        format: "string"
+      
+      state:
+        type: "integer"
+        description: "状态"
+        format: "int64"
+      
+      num:
+        type: "number"
+        description: "耗时"
+        format: "float"
+      
+      time_stamp_num:
+        type: "number"
+        description: "时间戳"
+        format: "float"
+      
+      chng_history:
+        type: "string"
+        description: "改变值"
+        format: "string"
+      
+      f_enabled_mark:
+        type: "integer"
+        description: "有效标志0否1是"
+        format: "int64"
+      
+      f_create_user_id:
+        type: "string"
+        description: "创建人ID"
+        format: "string"
+      
+      f_modify_user_name:
+        type: "string"
+        description: "编辑人"
+        format: "string"
+      
+      f_modify_user_id:
+        type: "string"
+        description: "编辑人ID"
+        format: "string"
+      
+      f_delete_mark:
+        type: "integer"
+        description: "删除标记0否1是"
+        format: "int64"
+      
+      f_sort_code:
+        type: "integer"
+        description: "排序码"
+        format: "int64"
+      
+      f_modify_date:
+        type: "string"
+        description: "编辑日期"
+        format: "date-time"
+      
+      f_create_user_name:
+        type: "string"
+        description: "创建人"
+        format: "string"
+      
+      f_create_date:
+        type: "string"
+        description: "创建时间"
+        format: "date-time"
+      
+      f_description:
+        type: "string"
+        description: "备注"
+        format: "string"
+      
+  OperatelogPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/Operatelog"
+
+  
+  Payroll:
+    type: "object"
+    properties:
+    
+      payroll_id:
+        type: "string"
+        description: "薪资项"
+        format: "string"
+      
+      standard_name:
+        type: "string"
+        description: "标准名称"
+        format: "string"
+      
+      field_name:
+        type: "string"
+        description: "字段名称"
+        format: "string"
+      
+      standard_field_name:
+        type: "string"
+        description: "实际字段名称"
+        format: "string"
+      
+      default_formula:
+        type: "string"
+        description: "日薪公式"
+        format: "string"
+      
+      formula_remark:
+        type: "string"
+        description: "公式备注"
+        format: "string"
+      
+      sql_formula:
+        type: "string"
+        description: "SQL公式"
+        format: "string"
+      
+      is_must_used:
+        type: "integer"
+        description: "必须启用"
+        format: "int64"
+      
+      is_addition:
+        type: "integer"
+        description: "加减项"
+        format: "int64"
+      
+      is_hand_calc:
+        type: "integer"
+        description: "手工计算项"
+        format: "int64"
+      
+      f_enabled_mark:
+        type: "integer"
+        description: "有效标志0否1是"
+        format: "int64"
+      
+      f_create_user_id:
+        type: "string"
+        description: "创建人ID"
+        format: "string"
+      
+      f_modify_user_name:
+        type: "string"
+        description: "编辑人"
+        format: "string"
+      
+      f_modify_user_id:
+        type: "string"
+        description: "编辑人ID"
+        format: "string"
+      
+      f_delete_mark:
+        type: "integer"
+        description: "删除标记0否1是"
+        format: "int64"
+      
+      f_sort_code:
+        type: "integer"
+        description: "排序码"
+        format: "int64"
+      
+      f_modify_date:
+        type: "string"
+        description: "编辑日期"
+        format: "date-time"
+      
+      f_create_user_name:
+        type: "string"
+        description: "创建人"
+        format: "string"
+      
+      f_create_date:
+        type: "string"
+        description: "创建时间"
+        format: "date-time"
+      
+      f_description:
+        type: "string"
+        description: "备注"
+        format: "string"
+      
+  PayrollPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/Payroll"
+
+  
+  Personal:
+    type: "object"
+    properties:
+    
+      person_id:
+        type: "string"
+        description: "雇员编号"
+        format: "string"
+      
+      tenant_id:
+        type: "string"
+        description: "租户编号"
+        format: "string"
+      
+      user_id:
+        type: "string"
+        description: "用户编号"
+        format: "string"
+      
+      real_name:
+        type: "string"
+        description: "用户姓名"
+        format: "string"
+      
+      mobile:
+        type: "string"
+        description: "手机号"
+        format: "string"
+      
+      job_no:
+        type: "string"
+        description: "工号"
+        format: "string"
+      
+      dept_name:
+        type: "string"
+        description: "部门名称"
+        format: "string"
+      
+      job_name:
+        type: "string"
+        description: "职务"
+        format: "string"
+      
+      job_level:
+        type: "string"
+        description: "职级"
+        format: "string"
+      
+      join_date:
+        type: "string"
+        description: "入职日期"
+        format: "date-time"
+      
+      last_date:
+        type: "string"
+        description: "离职日期"
+        format: "date-time"
+      
+      regular_date:
+        type: "string"
+        description: "转正日期"
+        format: "date-time"
+      
+      sallary_amount:
+        type: "number"
+        description: "月薪"
+        format: "float"
+      
+      current_free_tax:
+        type: "number"
+        description: "免税金额"
+        format: "float"
+      
+      ding_id:
+        type: "string"
+        description: "钉钉编号"
+        format: "string"
+      
+      f_enabled_mark:
+        type: "integer"
+        description: "有效标志0否1是"
+        format: "int64"
+      
+      f_create_user_id:
+        type: "string"
+        description: "创建人ID"
+        format: "string"
+      
+      f_modify_user_name:
+        type: "string"
+        description: "编辑人"
+        format: "string"
+      
+      f_modify_user_id:
+        type: "string"
+        description: "编辑人ID"
+        format: "string"
+      
+      f_delete_mark:
+        type: "integer"
+        description: "删除标记0否1是"
+        format: "int64"
+      
+      f_sort_code:
+        type: "integer"
+        description: "排序码"
+        format: "int64"
+      
+      f_modify_date:
+        type: "string"
+        description: "编辑日期"
+        format: "date-time"
+      
+      f_create_user_name:
+        type: "string"
+        description: "创建人"
+        format: "string"
+      
+      f_create_date:
+        type: "string"
+        description: "创建时间"
+        format: "date-time"
+      
+      f_description:
+        type: "string"
+        description: "备注"
+        format: "string"
+      
+  PersonalPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/Personal"
+
+  
+  Personfreetax:
+    type: "object"
+    properties:
+    
+      id:
+        type: "string"
+        description: "编号"
+        format: "string"
+      
+      person_id:
+        type: "string"
+        description: "员工编号"
+        format: "string"
+      
+      tenant_id:
+        type: "string"
+        description: "租户编号"
+        format: "string"
+      
+      znjy:
+        type: "number"
+        description: "子女教育"
+        format: "float"
+      
+      jxjy:
+        type: "number"
+        description: "继续教育"
+        format: "float"
+      
+      zfdk:
+        type: "number"
+        description: "住房贷款"
+        format: "float"
+      
+      zfzj:
+        type: "number"
+        description: "住房租金"
+        format: "float"
+      
+      sylr:
+        type: "number"
+        description: "赡养老人"
+        format: "float"
+      
+      f_enabled_mark:
+        type: "integer"
+        description: "有效标志0否1是"
+        format: "int64"
+      
+      f_create_user_id:
+        type: "string"
+        description: "创建人ID"
+        format: "string"
+      
+      f_modify_user_name:
+        type: "string"
+        description: "编辑人"
+        format: "string"
+      
+      f_modify_user_id:
+        type: "string"
+        description: "编辑人ID"
+        format: "string"
+      
+      f_delete_mark:
+        type: "integer"
+        description: "删除标记0否1是"
+        format: "int64"
+      
+      f_sort_code:
+        type: "integer"
+        description: "排序码"
+        format: "int64"
+      
+      f_modify_date:
+        type: "string"
+        description: "编辑日期"
+        format: "date-time"
+      
+      f_create_user_name:
+        type: "string"
+        description: "创建人"
+        format: "string"
+      
+      f_create_date:
+        type: "string"
+        description: "创建时间"
+        format: "date-time"
+      
+      f_description:
+        type: "string"
+        description: "备注"
+        format: "string"
+      
+  PersonfreetaxPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/Personfreetax"
+
+  
+  Personpayroll:
+    type: "object"
+    properties:
+    
+      id:
+        type: "string"
+        description: "ID"
+        format: "string"
+      
+      tenant_id:
+        type: "string"
+        description: "租户编号"
+        format: "string"
+      
+      person_id:
+        type: "string"
+        description: "雇员编号"
+        format: "string"
+      
+      monthly_pay_amount:
+        type: "number"
+        description: "月薪"
+        format: "float"
+      
+      valid_date:
+        type: "string"
+        description: "生效日期"
+        format: "date-time"
+      
+      invalid_date:
+        type: "string"
+        description: "失效日期"
+        format: "date-time"
+      
+      basic_sallary_amount:
+        type: "number"
+        description: "基本工资"
+        format: "float"
+      
+      kpiamout:
+        type: "number"
+        description: "绩效工资"
+        format: "float"
+      
+      traffic_fee:
+        type: "number"
+        description: "交通补贴"
+        format: "float"
+      
+      food_fee:
+        type: "number"
+        description: "餐费补贴"
+        format: "float"
+      
+      att_award_fee:
+        type: "number"
+        description: "全勤奖"
+        format: "float"
+      
+      att_fee:
+        type: "number"
+        description: "考勤奖励"
+        format: "float"
+      
+      professiona_fee:
+        type: "number"
+        description: "职称补贴"
+        format: "float"
+      
+      job_allowance:
+        type: "number"
+        description: "岗位津贴"
+        format: "float"
+      
+      assign_fee:
+        type: "number"
+        description: "外派项目补贴"
+        format: "float"
+      
+      mobile_fee:
+        type: "number"
+        description: "通讯补贴"
+        format: "float"
+      
+      she_bao_fee:
+        type: "number"
+        description: "社保标准"
+        format: "float"
+      
+      house_fee:
+        type: "number"
+        description: "住房公积金"
+        format: "float"
+      
+      cust_add_fee2:
+        type: "number"
+        description: "自定义加项2"
+        format: "float"
+      
+      cust_add_fee1:
+        type: "number"
+        description: "自定义加项1"
+        format: "float"
+      
+      cust_sub_fee2:
+        type: "number"
+        description: "自定义减项1"
+        format: "float"
+      
+      cust_sub_fee1:
+        type: "number"
+        description: "自定义减项2"
+        format: "float"
+      
+      is_last:
+        type: "integer"
+        description: "是否最新"
+        format: "int64"
+      
+      spec_job_allowance:
+        type: "number"
+        description: "特殊岗位津贴"
+        format: "float"
+      
+      she_bao_account_no:
+        type: "string"
+        description: "社保账号"
+        format: "string"
+      
+      house_account_no:
+        type: "string"
+        description: "住房公积金账号"
+        format: "string"
+      
+      f_enabled_mark:
+        type: "integer"
+        description: "有效标志0否1是"
+        format: "int64"
+      
+      f_create_user_id:
+        type: "string"
+        description: "创建人ID"
+        format: "string"
+      
+      f_modify_user_name:
+        type: "string"
+        description: "编辑人"
+        format: "string"
+      
+      f_modify_user_id:
+        type: "string"
+        description: "编辑人ID"
+        format: "string"
+      
+      f_delete_mark:
+        type: "integer"
+        description: "删除标记0否1是"
+        format: "int64"
+      
+      f_sort_code:
+        type: "integer"
+        description: "排序码"
+        format: "int64"
+      
+      f_modify_date:
+        type: "string"
+        description: "编辑日期"
+        format: "date-time"
+      
+      f_create_user_name:
+        type: "string"
+        description: "创建人"
+        format: "string"
+      
+      f_create_date:
+        type: "string"
+        description: "创建时间"
+        format: "date-time"
+      
+      f_description:
+        type: "string"
+        description: "备注"
+        format: "string"
+      
+  PersonpayrollPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/Personpayroll"
+
+  
+  Tenant:
+    type: "object"
+    properties:
+    
+      tenant_id:
+        type: "string"
+        description: "租户编号"
+        format: "string"
+      
+      full_name:
+        type: "string"
+        description: "全称"
+        format: "string"
+      
+      simple_name:
+        type: "string"
+        description: "简称"
+        format: "string"
+      
+      company_id:
+        type: "string"
+        description: "公司系统编号"
+        format: "string"
+      
+      contact_name:
+        type: "string"
+        description: "联系人"
+        format: "string"
+      
+      contact_title:
+        type: "string"
+        description: "称谓"
+        format: "string"
+      
+      contact_email:
+        type: "string"
+        description: "联系人邮件"
+        format: "string"
+      
+      contact_phone:
+        type: "string"
+        description: "联系电话"
+        format: "string"
+      
+      contact_mobile:
+        type: "string"
+        description: "联系人手机"
+        format: "string"
+      
+      payroll_day:
+        type: "integer"
+        description: "薪资周期"
+        format: "int64"
+      
+      hrsource:
+        type: "string"
+        description: "薪资周期"
+        format: "string"
+      
+      att_source:
+        type: "string"
+        description: "人事来源"
+        format: "string"
+      
+      buy_she_bao:
+        type: "string"
+        description: "社保设置"
+        format: "string"
+      
+      ding_id:
+        type: "string"
+        description: "钉钉ID"
+        format: "string"
+      
+      corpid:
+        type: "string"
+        description: "Corpid"
+        format: "string"
+      
+      corpsecret:
+        type: "string"
+        description: "Corpsecret"
+        format: "string"
+      
+      state:
+        type: "integer"
+        description: "租用状态"
+        format: "int64"
+      
+      she_bao_rate:
+        type: "number"
+        description: "社保费率"
+        format: "float"
+      
+      house_rate:
+        type: "number"
+        description: "公积金费率"
+        format: "float"
+      
+      tenant_end_time:
+        type: "string"
+        description: "结束时间"
+        format: "date-time"
+      
+      tenant_start_time:
+        type: "string"
+        description: "开始时间"
+        format: "date-time"
+      
+      f_enabled_mark:
+        type: "integer"
+        description: "有效标志0否1是"
+        format: "int64"
+      
+      f_create_user_id:
+        type: "string"
+        description: "创建人ID"
+        format: "string"
+      
+      f_modify_user_name:
+        type: "string"
+        description: "编辑人"
+        format: "string"
+      
+      f_modify_user_id:
+        type: "string"
+        description: "编辑人ID"
+        format: "string"
+      
+      f_delete_mark:
+        type: "integer"
+        description: "删除标记0否1是"
+        format: "int64"
+      
+      f_sort_code:
+        type: "integer"
+        description: "排序码"
+        format: "int64"
+      
+      f_modify_date:
+        type: "string"
+        description: "编辑日期"
+        format: "date-time"
+      
+      f_create_user_name:
+        type: "string"
+        description: "创建人"
+        format: "string"
+      
+      f_create_date:
+        type: "string"
+        description: "创建时间"
+        format: "date-time"
+      
+      f_description:
+        type: "string"
+        description: "备注"
+        format: "string"
+      
+  TenantPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/Tenant"
+
+  
+  Tenantadjustitem:
+    type: "object"
+    properties:
+    
+      id:
+        type: "string"
+        description: "编号"
+        format: "string"
+      
+      tenant_id:
+        type: "string"
+        description: "商户编号"
+        format: "string"
+      
+      person_id:
+        type: "string"
+        description: "员工Id"
+        format: "string"
+      
+      person_name:
+        type: "string"
+        description: "员工姓名"
+        format: "string"
+      
+      dept_name:
+        type: "string"
+        description: "部门名称"
+        format: "string"
+      
+      month_id:
+        type: "string"
+        description: "月份编号"
+        format: "string"
+      
+      amount:
+        type: "number"
+        description: "调整金额"
+        format: "float"
+      
+      adjest_remark:
+        type: "string"
+        description: "原因"
+        format: "string"
+      
+      f_enabled_mark:
+        type: "integer"
+        description: "有效标志0否1是"
+        format: "int64"
+      
+      f_create_user_id:
+        type: "string"
+        description: "创建人ID"
+        format: "string"
+      
+      f_modify_user_name:
+        type: "string"
+        description: "编辑人"
+        format: "string"
+      
+      f_modify_user_id:
+        type: "string"
+        description: "编辑人ID"
+        format: "string"
+      
+      f_delete_mark:
+        type: "integer"
+        description: "删除标记0否1是"
+        format: "int64"
+      
+      f_sort_code:
+        type: "integer"
+        description: "排序码"
+        format: "int64"
+      
+      f_modify_date:
+        type: "string"
+        description: "编辑日期"
+        format: "date-time"
+      
+      f_create_user_name:
+        type: "string"
+        description: "创建人"
+        format: "string"
+      
+      f_create_date:
+        type: "string"
+        description: "创建时间"
+        format: "date-time"
+      
+      f_description:
+        type: "string"
+        description: "备注"
+        format: "string"
+      
+  TenantadjustitemPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/Tenantadjustitem"
+
+  
+  Tenantpayroll:
+    type: "object"
+    properties:
+    
+      tpid:
+        type: "string"
+        description: "租户薪酬编号"
+        format: "string"
+      
+      tenant_id:
+        type: "string"
+        description: "租户编号"
+        format: "string"
+      
+      payroll_id:
+        type: "string"
+        description: "薪酬项编号"
+        format: "string"
+      
+      tenant_payroll_name:
+        type: "string"
+        description: "薪酬项名称"
+        format: "string"
+      
+      tenant_formula:
+        type: "string"
+        description: "租户公式"
+        format: "string"
+      
+      sql_formula:
+        type: "string"
+        description: "SQL公式"
+        format: "string"
+      
+      tenant_formula_remark:
+        type: "string"
+        description: "租户公式备注"
+        format: "string"
+      
+      is_used:
+        type: "integer"
+        description: "是否启用"
+        format: "int64"
+      
+      is_on_slip:
+        type: "integer"
+        description: "显示在工资条"
+        format: "int64"
+      
+      item_type:
+        type: "integer"
+        description: "薪资类别"
+        format: "int64"
+      
+      payoff_type:
+        type: "string"
+        description: "支付方式"
+        format: "string"
+      
+      f_enabled_mark:
+        type: "integer"
+        description: "有效标志0否1是"
+        format: "int64"
+      
+      f_create_user_id:
+        type: "string"
+        description: "创建人ID"
+        format: "string"
+      
+      f_modify_user_name:
+        type: "string"
+        description: "编辑人"
+        format: "string"
+      
+      f_modify_user_id:
+        type: "string"
+        description: "编辑人ID"
+        format: "string"
+      
+      f_delete_mark:
+        type: "integer"
+        description: "删除标记0否1是"
+        format: "int64"
+      
+      f_sort_code:
+        type: "integer"
+        description: "排序码"
+        format: "int64"
+      
+      f_modify_date:
+        type: "string"
+        description: "编辑日期"
+        format: "date-time"
+      
+      f_create_user_name:
+        type: "string"
+        description: "创建人"
+        format: "string"
+      
+      f_create_date:
+        type: "string"
+        description: "创建时间"
+        format: "date-time"
+      
+      f_description:
+        type: "string"
+        description: "备注"
+        format: "string"
+      
+  TenantpayrollPagination:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        description: "json repose code"
+        format: "int32"
+      total:
+        type: "integer"
+        description: "total numbers"
+        format: "int32"
+      offset:
+        type: "integer"
+        description: "offset"
+        format: "int32"
+      limit:
+        type: "integer"
+        description: "limit"
+        format: "int32"
+      list:
+        type: "array"
+        items:
+          $ref: "#/definitions/Tenantpayroll"
+
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      msg:
+        type: "string"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"

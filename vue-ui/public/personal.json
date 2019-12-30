@@ -1,0 +1,48 @@
+{
+    "list": [{
+            "id": 1,
+            "deptname": "IT部",
+            "fullname": "张三",
+            "jobNo":"00001",
+            "jobtitle": "开发工程师",
+            "joblevel": "工程师",
+            "status": "在职",
+            "joindate": "2019-11-1",
+            "thumb": "https://lin-xin.gitee.io/images/post/wms.png"
+        },
+        {
+            "id": 2,
+            "deptname": "IT部",
+            "fullname": "里四",
+            "jobNo":"00001",
+            "jobtitle": "开发工程师",
+            "joblevel": "工程师",
+            "status": "在职",
+            "joindate": "2019-11-1",
+            "thumb": "https://lin-xin.gitee.io/images/post/wms.png"
+        },
+        {
+            "id": 3,
+            "deptname": "IT部",
+            "fullname": "王五",
+            "jobNo":"00001",
+            "jobtitle": "开发工程师",
+            "joblevel": "工程师",
+            "status": "在职",
+            "joindate": "2019-11-1",
+            "thumb": "https://lin-xin.gitee.io/images/post/wms.png"
+        },
+        {
+            "id": 4,
+            "deptname": "IT部",
+            "fullname": "赵柳",
+            "jobNo":"00001",
+            "jobtitle": "开发工程师",
+            "joblevel": "工程师",
+            "status": "在职",
+            "joindate": "2019-11-1",
+            "thumb": "https://lin-xin.gitee.io/images/post/wms.png"
+        }
+    ],
+    "pageTotal": 4
+}
