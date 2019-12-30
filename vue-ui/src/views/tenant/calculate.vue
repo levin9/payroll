@@ -110,31 +110,36 @@
         </div>
           <el-dialog title="编辑-手工调整"  :visible.sync="dialogUpdateVisible" :width="width?width:'40%'">
             <el-form :model="entity" ref="editForm" :rules="rules" label-width="100px" >
-                <el-form-item label="姓名" prop="person_name"><el-input v-model="entity.person_name" :disabled=dialogUpdateVisible ></el-input></el-form-item> 
-                <el-form-item label="月份" prop="month_id" ><el-input v-model="entity.month_id" :disabled=dialogUpdateVisible ></el-input></el-form-item> 
-                <el-form-item label="调整金额" prop="amount">
-                    <inputNumber v-model="entity.amount"  append="元" ></inputNumber>
-                    </el-form-item> 
-                <el-form-item label="调整原因" prop="adjest_remark" ><el-input v-model="entity.adjest_remark" ></el-input></el-form-item>               
+               
+                <el-form-item label="月份" prop="month_id" >  
+                       <el-date-picker
+                            v-model="query.month_id"
+                            type="month"
+                            placeholder="选择月"
+                            >                            
+                            </el-date-picker>
+                </el-form-item> 
+                          
             </el-form>
         <span slot="footer" class="dialog-footer">
             <el-button @click="dialogUpdateVisible = false">取 消</el-button>
             <el-button type="primary" @click="submitEdit">确 定</el-button>
         </span>
         </el-dialog>
-        <el-dialog title="新增-手工调整"  :visible.sync="dialogCreateVisible" :width="width?width:'40%'">
+        <el-dialog title="薪酬计算"  :visible.sync="dialogCalculateVisible" :width="width?width:'40%'">
             <el-form :model="entity" ref="createForm" :rules="rules" label-width="120px" >          
-                <el-form-item label="姓名" width="250" prop="person_name" ><el-input v-model="entity.person_name"   ></el-input></el-form-item> 
-                <el-form-item label="月份" prop="month_id" ><el-input v-model="entity.month_id" ></el-input></el-form-item> 
-                
-                <el-form-item label="调整金额" prop="amount" >
-                    <inputNumber v-model="entity.amount"    append="元" ></inputNumber>
-                    </el-form-item> 
-                <el-form-item label="调整原因" prop="adjest_remark"><el-input v-model="entity.adjest_remark" ></el-input></el-form-item>               
+                <el-form-item label="月份" prop="month_id" >  
+                       <el-date-picker
+                            v-model="query.month_id"
+                            type="month"
+                            placeholder="选择月"
+                            >                            
+                            </el-date-picker>
+                </el-form-item>              
             </el-form>
         <span slot="footer" class="dialog-footer">
-            <el-button @click="dialogCreateVisible = false">取 消</el-button>
-            <el-button type="primary" @click="submitCreate">确 定</el-button>
+            <el-button @click="dialogCalculateVisible = false">取 消</el-button>
+            <el-button type="primary" @click="submitCalculate">确 定</el-button>
         </span>
         </el-dialog>
     </div>    
@@ -168,6 +173,10 @@ export default {
                 amount:0,
                 adjest_remark:''
             },
+            calcParameter:{
+                month_id:'',
+                tenant_id:''
+            },
             tableData: [],
             multipleSelection: [],
             delList: [],
@@ -175,7 +184,7 @@ export default {
             form: {},
             idx: -1,
             id: -1,
-            dialogCreateVisible:false,
+            dialogCalculateVisible:false,
             dialogUpdateVisible:false,
         rules: 
             {
@@ -227,7 +236,7 @@ export default {
             this.entity.amount=0;
             this.entity.adjest_remark="";
            
-            this.dialogCreateVisible=true;
+            this.dialogCalculateVisible=true;
             this.dialogUpdateVisible=false;
 
         },
@@ -255,19 +264,20 @@ export default {
             })
         },
            // 新增
-        submitCreate(){
-            this.$refs['createForm'].validate((valid) => {
-            if (!valid) {
-                return false
-            } 
-            this.$post('tenantadjustitem',this.entity)
+        submitCalculate(){ 
+            this.calcParameter.tenant_id=localStorage.getItem('user_tenant_id');  
+            this.calcParameter.month_id=this.query.month_id;
+            if (this.calcParameter.month_id==""){
+                this.$message.success(`请选择需要计算的月份.`);  
+                return false;
+            }            
+            this.$post('calculatepayroll',this.calcParameter)
                 .then((response) => {                        
-                    this.dialogCreateVisible = false;
-                    this.$message.success(`新增成功`);  
+                    this.dialogCalculateVisible = false;
+                    this.$message.success(`计算成功`);  
                 }).catch(function(error){
                     this.$message.error(error);                         
-                }); 
-        })
+                });        
 
         },
         // 删除操作
