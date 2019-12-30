@@ -4,7 +4,10 @@ import (
 	"fmt"
 )
 
+type ClaculateHandler struct {
+}
+
 //CalculateMonthPayroll
-func CalculateMonthPayroll(TenantId, MonthId string) {
+func (h *ClaculateHandler) CalculateMonthPayroll(TenantId, MonthId string) {
 	fmt.Println(TenantId, MonthId)
 }

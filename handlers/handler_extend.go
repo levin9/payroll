@@ -18,7 +18,11 @@ func CalculatePayroll(c *gin.Context) {
 	if c.Handler(c,err){
 		return 
 	}
-	
+	//serv := blls.ClaculateHandler
+	//serv..CalculateMonthPayroll("","")
+	//blls.CalculateMonthPayroll("","")
+
+	fmt.Println(para)
 	//foreach all data
 
 	// var mdl models.GDemo
