@@ -153,7 +153,7 @@ export default {
     data() {
         return {            
             query: {
-                month_id:'201911',
+                month_id:'201910',
                 tenant_id:localStorage.getItem('user_tenant_id'),
                 keyword: '',
                 order:'',          
