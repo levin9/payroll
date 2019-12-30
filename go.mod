@@ -10,8 +10,9 @@ require (
 	github.com/go-redis/redis v6.15.6+incompatible
 	github.com/go-sql-driver/mysql v1.4.1
 	github.com/jinzhu/gorm v1.9.11
+	github.com/levin9/payroll/blls v0.0.0
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/viper v1.6.1
 )
 
-replace github.com/levin9/payroll/blls => ../blls
+replace github.com/levin9/payroll/blls => ../payroll/blls

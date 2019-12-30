@@ -13,16 +13,16 @@ func init() {
 
 //CalculatePayroll
 func CalculatePayroll(c *gin.Context) {
-	var para CalcParameter
-	err :=c.ShouldBind(&para)
-	if c.Handler(c,err){
-		return 
-	}
+	// var para CalcParameter
+	// err :=c.ShouldBind(&para)
+	// if c.Handler(c,err){
+	// 	return
+	// }
 	//serv := blls.ClaculateHandler
 	//serv..CalculateMonthPayroll("","")
-	//blls.CalculateMonthPayroll("","")
+	blls.CalculateMonthPayroll("", "")
 
-	fmt.Println(para)
+	//fmt.Println(para)
 	//foreach all data
 
 	// var mdl models.GDemo
@@ -35,9 +35,4 @@ func CalculatePayroll(c *gin.Context) {
 	// 	return
 	// }
 	jsonData(c, nil)
-}
-
-type CalcParameter struct{
-	MonthId		string 	'json:"month_id" comment:"月份编号"'
-	TenantId	string 	'json:"tenant_id" comment:"租户编号"'
 }
