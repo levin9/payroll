@@ -13,6 +13,7 @@ require (
 	github.com/levin9/payroll/blls v0.0.0
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/viper v1.6.1
+	github.com/yidane/formula v0.0.0-20190507083929-d272721f4dd9 // indirect
 )
 
 replace github.com/levin9/payroll/blls => ../payroll/blls

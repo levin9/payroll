@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/levin9/payroll/blls"
 )
@@ -13,26 +14,14 @@ func init() {
 
 //CalculatePayroll
 func CalculatePayroll(c *gin.Context) {
-	// var para CalcParameter
-	// err :=c.ShouldBind(&para)
-	// if c.Handler(c,err){
-	// 	return
-	// }
-	//serv := blls.ClaculateHandler
-	//serv..CalculateMonthPayroll("","")
-	blls.CalculateMonthPayroll("", "")
+	var para blls.CalcParameter
+	err := c.ShouldBind(&para)
+	if handleError(c, err) {
+		return
+	}
 
-	//fmt.Println(para)
-	//foreach all data
-
-	// var mdl models.GDemo
-	// err := c.ShouldBind(&mdl)
-	// if handleError(c, err) {
-	// 	return
-	// }
-	// err = mdl.Create()
-	// if handleError(c, err) {
-	// 	return
-	// }
-	jsonData(c, nil)
+	payrollHandler := blls.OperatorPayrollHandler{}
+	result := payrollHandler.CalculateMonthPayroll(para)
+	fmt.Println(result)
+	jsonData(c, result)
 }
