@@ -236,6 +236,10 @@ import bottomBar from    '../../components/common/BottomBar.vue'
                     she_bao_rate:8,
                     house_rate:5
                 },
+                query:{
+                    tenant_id:localStorage.getItem('user_tenant_id'),
+                    is_valid:1
+                },
                 payrollData:[ ],
                 attData:[],              
                 rules:{

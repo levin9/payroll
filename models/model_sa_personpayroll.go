@@ -17,7 +17,7 @@ type Personpayroll struct {
 	Validdate   *time.Time     `gorm:"column:ValidDate" form:"valid_date" json:"valid_date,omitempty" comment:"生效日期" sql:"datetime(6)"`
 	Invaliddate   *time.Time     `gorm:"column:InvalidDate" form:"invalid_date" json:"invalid_date,omitempty" comment:"失效日期" sql:"datetime(6)"`
 	Basicsallaryamount   float32     `gorm:"column:BasicSallaryAmount" form:"basic_sallary_amount" json:"basic_sallary_amount" comment:"基本工资" sql:"decimal(10,4)"`
-	Kpiamout   float32     `gorm:"column:KPIAmout" form:"kpiamout" json:"kpiamout" comment:"绩效工资" sql:"decimal(10,4)"`
+	KpiAmout   float32     `gorm:"column:KpiAmout" form:"KpiAmout" json:"KpiAmout" comment:"绩效工资" sql:"decimal(10,4)"`
 	Trafficfee   float32     `gorm:"column:TrafficFee" form:"traffic_fee" json:"traffic_fee" comment:"交通补贴" sql:"decimal(10,4)"`
 	Foodfee   float32     `gorm:"column:FoodFee" form:"food_fee" json:"food_fee" comment:"餐费补贴" sql:"decimal(10,4)"`
 	Attawardfee   float32     `gorm:"column:AttAwardFee" form:"att_award_fee" json:"att_award_fee" comment:"全勤奖" sql:"decimal(10,4)"`

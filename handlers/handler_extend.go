@@ -4,11 +4,13 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/levin9/payroll/blls"
+	"payroll/models"
 )
 
 func init() {
 
 	groupApi.POST("calculatepayroll", CalculatePayroll)
+	groupApi.GET("loadvariable/:id", LoadVariable)
 
 }
 
@@ -24,4 +26,12 @@ func CalculatePayroll(c *gin.Context) {
 	result := payrollHandler.CalculateMonthPayroll(para)
 	fmt.Println(result)
 	jsonData(c, result)
+}
+
+//LoadVariable
+func LoadVariable(c *gin.Context) {
+	provider := models.VariableProvider{}
+	TenantId := c.Param("id")
+	list := provider.Load(TenantId)
+	jsonData(c, list)
 }

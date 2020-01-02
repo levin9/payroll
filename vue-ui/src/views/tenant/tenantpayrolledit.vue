@@ -83,9 +83,10 @@
             </div>
            </el-form>          
         </div>
-        <el-dialog title="变量"  :visible.sync="dialogVarVisible" destroy-on-close="true" :width="width?width:'40%'"> 
-            <div style="bgcolor:red; border:2px;margin-top:-40px;">                
-                <el-button type="primary" plain v-for="(item,index) in allVarList" :key="index">{{item}}</el-button>      
+        <el-dialog title="变量"  :visible.sync="dialogVarVisible" destroy-on-close="true" :width="width?width:'55%'"> 
+            <div style="bgcolor:red; border:2px;margin-top:-40px;">   
+                <el-tag closable  v-for="(item,index) in allVarList" :key="index" style="margin-left:10px;margin-bottom:10px;" >  {{item}}  </el-tag>          
+                
             </div>
             <span slot="footer" class="dialog-footer">
                     <el-button @click="dialogVarVisible = false">取 消</el-button>
@@ -144,6 +145,15 @@ import bottomBar from    '../../components/common/BottomBar.vue'
         this.$fetch('tenantpayroll/' + this.$route.query.id )
         .then((response) => {
             this.formModel=response.data;                           
+        }).catch(function(error){           
+            alert('error..');
+        }); 
+
+         this.$fetch('loadvariable/' + this.$route.query.id )
+        .then((response) => {
+            console.log('dddddddddddddd');
+            console.log(response);
+            this.allVarList=response.data;                           
         }).catch(function(error){           
             alert('error..');
         }); 

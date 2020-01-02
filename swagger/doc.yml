@@ -5173,7 +5173,7 @@ definitions:
         description: "基本工资"
         format: "float"
       
-      kpiamout:
+      KpiAmout:
         type: "number"
         description: "绩效工资"
         format: "float"
@@ -6038,7 +6038,7 @@ definitions:
         description: "基本工资"
         format: "float"
       
-      kpiamout:
+      KpiAmout:
         type: "number"
         description: "绩效工资"
         format: "float"

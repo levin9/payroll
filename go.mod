@@ -3,6 +3,7 @@ module payroll
 go 1.13
 
 require (
+	github.com/antlr/antlr4 v0.0.0-20191217191749-ff67971f8580 // indirect
 	github.com/gin-contrib/cors v1.3.0
 	github.com/gin-contrib/static v0.0.0-20191128031702-f81c604d8ac2
 	github.com/gin-gonic/autotls v0.0.0-20191129055149-ffaac874b99f

@@ -1,0 +1,77 @@
+package models
+
+import "time"
+
+type CalcVarItem struct {
+	ID                   string     `gorm:"column:ID" form:"id" json:"id" comment:"" `
+	TenantId             string     `gorm:"column:TenantId" form:"tenant_id" json:"tenant_id" comment:"" `
+	MonthId              string     `gorm:"column:MonthId" form:"month_id" json:"month_id" comment:"" `
+	PersonId             string     `gorm:"column:PersonId" form:"person_id" json:"person_id" comment:"" `
+	RealName             string     `gorm:"column:RealName" form:"real_name" json:"real_name" comment:"" `
+	DeptName             string     `gorm:"column:DeptName" form:"dept_name" json:"dept_name" comment:"" `
+	JobLevel             string     `gorm:"column:JobLevel" form:"job_level" json:"job_level" comment:"" `
+	JobName              string     `gorm:"column:JobName" form:"job_name" json:"job_name" comment:"" `
+	JoinDate             *time.Time `gorm:"column:JoinDate" form:"join_date" json:"join_date" comment:"" `
+	ExtInfo              string     `gorm:"column:ExtInfo" form:"ext_info" json:"ext_info" comment:"" `
+	MonthlyPayAmount     float32    `gorm:"column:MonthlyPayAmount" form:"monthly_pay_amount" json:"monthly_pay_amount" comment:"" `
+	WorkDay              float32    `gorm:"column:WorkDay" form:"work_day" json:"work_day" comment:"" `
+	PlanWorkDay          float32    `gorm:"column:PlanWorkDay" form:"plan_work_day" json:"plan_work_day" comment:"" `
+	ActualWorkDay        float32    `gorm:"column:ActualWorkDay" form:"actual_work_day" json:"actual_work_day" comment:"" `
+	BasicSallaryAmount   float32    `gorm:"column:BasicSallaryAmount" form:"basic_sallary_amount" json:"basic_sallary_amount" comment:"" `
+	KpiAmout             float32    `gorm:"column:KpiAmout" form:"kpi_amout" json:"kpi_amout" comment:"" `
+	TrafficFee           float32    `gorm:"column:TrafficFee" form:"traffic_fee" json:"traffic_fee" comment:"" `
+	FoodFee              float32    `gorm:"column:FoodFee" form:"food_fee" json:"food_fee" comment:"" `
+	AttFee               float32    `gorm:"column:AttFee" form:"att_fee" json:"att_fee" comment:"" `
+	AttAwardFee          float32    `gorm:"column:AttAwardFee" form:"att_award_fee" json:"att_award_fee" comment:"" `
+	ChiDaoFee            float32    `gorm:"column:ChiDaoFee" form:"chi_dao_fee" json:"chi_dao_fee" comment:"" `
+	ChiDaoCount          float32    `gorm:"column:ChiDaoCount" form:"chi_dao_count" json:"chi_dao_count" comment:"" `
+	ZaoTuiCount          float32    `gorm:"column:ZaoTuiCount" form:"zaotui_count" json:"zaotui_count" comment:"" `
+	ZaoTuiFee            float32    `gorm:"column:ZaoTuiFee" form:"zaotui_Fee" json:"zaotui_Fee" comment:"" `
+	SickFee              float32    `gorm:"column:SickFee" form:"sick_fee" json:"sick_fee" comment:"" `
+	SickNum              float32    `gorm:"column:SickNum" form:"sick_num" json:"sick_num" comment:"" `
+	ShiJiaFee            float32    `gorm:"column:ShiJiaFee" form:"shi_jia_fee" json:"shi_jia_fee" comment:"" `
+	ShiJiaNum            float32    `gorm:"column:ShiJiaNum" form:"shi_jia_num" json:"shi_jia_num" comment:"" `
+	AnnualLeaveNum       float32    `gorm:"column:AnnualLeaveNum" form:"annual_leave_num" json:"annual_leave_num" comment:"" `
+	AnnualLeaveFee       float32    `gorm:"column:AnnualLeaveFee" form:"annual_leave_fee" json:"annual_leave_fee" comment:"" `
+	ProfessionaFee       float32    `gorm:"column:ProfessionaFee" form:"professiona_fee" json:"professiona_fee" comment:"" `
+	JobAllowance         float32    `gorm:"column:JobAllowance" form:"job_allowance" json:"job_allowance" comment:"" `
+	AssignFee            float32    `gorm:"column:AssignFee" form:"assign_fee" json:"assign_fee" comment:"" `
+	MobileFee            float32    `gorm:"column:MobileFee" form:"mobile_fee" json:"mobile_fee" comment:"" `
+	SheBaoFee            float32    `gorm:"column:SheBaoFee" form:"she_bao_fee" json:"she_bao_fee" comment:"" `
+	HouseFee             float32    `gorm:"column:HouseFee" form:"house_fee" json:"house_fee" comment:"" `
+	SpecJobAllowance     float32    `gorm:"column:SpecJobAllowance" form:"spec_job_allowance" json:"spec_job_allowance" comment:"" `
+	SangJiaFee           float32    `gorm:"column:SangJiaFee" form:"sang_jia_fee" json:"sang_jia_fee" comment:"" `
+	HunJIaFee            float32    `gorm:"column:HunJIaFee" form:"hun_jia_fee" json:"hun_jia_fee" comment:"" `
+	BuRvJiaFee           float32    `gorm:"column:BuRvJiaFee" form:"bu_rv_jia_fee" json:"bu_rv_jia_fee" comment:"" `
+	ChanJiaFee           float32    `gorm:"column:ChanJiaFee" form:"chan_jia_fee" json:"chan_jia_fee" comment:"" `
+	PeiChanJiaFee        float32    `gorm:"column:PeiChanJiaFee" form:"pei_chan_jia_fee" json:"pei_chan_jia_fee" comment:"" `
+	KongBaiFee           float32    `gorm:"column:KongBaiFee" form:"kong_bai_fee" json:"kong_bai_fee" comment:"" `
+	QueQinFee            float32    `gorm:"column:QueQinFee" form:"que_qin_fee" json:"que_qin_fee" comment:"" `
+	TiaoXiuFee           float32    `gorm:"column:TiaoXiuFee" form:"tiao_xiu_fee" json:"tiao_xiu_fee" comment:"" `
+	DaiXinJiaFee         float32    `gorm:"column:DaiXinJiaFee" form:"dai_xin_jia_fee" json:"dai_xin_jia_fee" comment:"" `
+	WagesPayableAmount   float32    `gorm:"column:WagesPayableAmount" form:"wages_payable_amount" json:"wages_payable_amount" comment:"" `
+	ActualPayableAmount  float32    `gorm:"column:ActualPayableAmount" form:"actual_payable_amount" json:"actual_payable_amount" comment:"" `
+	AdjustFee            float32    `gorm:"column:AdjustFee" form:"adjust_fee" json:"adjust_fee" comment:"" `
+	FreeTaxAmount        float32    `gorm:"column:FreeTaxAmount" form:"free_tax_amount" json:"free_tax_amount" comment:"" `
+	IncomeTaxAmount      float32    `gorm:"column:IncomeTaxAmount" form:"income_tax_amount" json:"income_tax_amount" comment:"" `
+	CustAddFee1          float32    `gorm:"column:CustAddFee1" form:"cust_add_fee1" json:"cust_add_fee1" comment:"" `
+	CustAddFee2          float32    `gorm:"column:CustAddFee2" form:"cust_add_fee2" json:"cust_add_fee2" comment:"" `
+	CustSubFee1          float32    `gorm:"column:CustSubFee1" form:"cust_sub_fee1" json:"cust_sub_fee1" comment:"" `
+	CustSubFee2          float32    `gorm:"column:CustSubFee2" form:"cust_sub_fee2" json:"cust_sub_fee2" comment:"" `
+	BasicSallaryAmount01 float32    `gorm:"column:BasicSallaryAmount01" form:"basic_sallary_amount01" json:"basic_sallary_amount01" comment:"" `
+	KpiAmout01           float32    `gorm:"column:KpiAmout01" form:"kpi_amout01" json:"kpi_amout01" comment:"" `
+	TrafficFee01         float32    `gorm:"column:TrafficFee01" form:"traffic_fee01" json:"traffic_fee01" comment:"" `
+	FoodFee01            float32    `gorm:"column:FoodFee01" form:"food_fee01" json:"food_fee01" comment:"" `
+	ProfessionaFee01     float32    `gorm:"column:ProfessionaFee01" form:"professiona_fee01" json:"professiona_fee01" comment:"" `
+	JobAllowance01       float32    `gorm:"column:JobAllowance01" form:"job_allowance01" json:"job_allowance01" comment:"" `
+	AssignFee01          float32    `gorm:"column:AssignFee01" form:"assign_fee01" json:"assign_fee01" comment:"" `
+	MobileFee01          float32    `gorm:"column:MobileFee01" form:"mobile_fee01" json:"mobile_fee01" comment:"" `
+	SheBaoFee01          float32    `gorm:"column:SheBaoFee01" form:"she_bao_fee01" json:"she_bao_fee01" comment:"" `
+	HouseFee01           float32    `gorm:"column:HouseFee01" form:"house_fee01" json:"tehouse_fee01nant_id" comment:"" `
+	AttAwardFee01        float32    `gorm:"column:AttAwardFee01" form:"att_aardFee01" json:"att_aardFee01" comment:"" `
+	SpecJobAllowance01   float32    `gorm:"column:SpecJobAllowance01" form:"spec_job_allowance01" json:"spec_job_allowance01" comment:"" `
+	CustAddFee101        float32    `gorm:"column:CustAddFee101" form:"cust_add_fee101" json:"cust_add_fee101" comment:"" `
+	CustAddFee201        float32    `gorm:"column:CustAddFee201" form:"cust_add_fee201" json:"cust_add_fee201" comment:"" `
+	CustSubFee101        float32    `gorm:"column:CustSubFee101" form:"cust_sub_fee101" json:"cust_sub_fee101" comment:"" `
+	CustSubFee201        float32    `gorm:"column:CustSubFee201" form:"cust_sub_fee201" json:"cust_sub_fee201" comment:"" `
+}
