@@ -3,10 +3,12 @@ package handlers
 import (
 	"errors"
 	"payroll/models"
+	"strconv"
+	"strings"
+	"time"
+
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"strconv"
-	"time"
 )
 
 func jsonError(c *gin.Context, msg string) {
@@ -20,6 +22,30 @@ func jsonPagination(c *gin.Context, list interface{}, total uint, query *models.
 }
 func jsonSuccess(c *gin.Context) {
 	c.JSON(200, gin.H{"code": 1, "msg": "success"})
+}
+
+// func WhereIf(c *gin.Context, query *models.PaginationQuery, name string, template string) {
+// 	nVal := c.DefaultQuery(name, "-1")
+// 	if nVal != "-1" {
+// 		query.AppendSql(template, nVal)
+// 		if query.Where ==""{
+
+// 		}else{
+// 			query.Where=query.Where( " and " + template)
+// 		}
+// 	}
+// }
+
+func WhereIf(c *gin.Context, where string, name string, template string) string {
+	nVal := c.DefaultQuery(name, "-1")
+	if nVal != "-1" && nVal != "" {
+		if where == "" {
+			where = strings.ReplaceAll(template, "?", nVal)
+		} else {
+			where = where + " and " + strings.ReplaceAll(template, "?", nVal)
+		}
+	}
+	return where
 }
 
 func handleError(c *gin.Context, err error) bool {
