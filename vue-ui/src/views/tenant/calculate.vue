@@ -65,19 +65,29 @@
                 header-cell-class-name="table-header"
                 @selection-change="handleSelectionChange"
             >
-                <el-table-column prop="dept_name" label="部门" fixed ></el-table-column>
+                <el-table-column prop="dept_name" label="部门" fixed width="120" ></el-table-column>
                 <el-table-column prop="real_name" label="姓名" fixed ></el-table-column>
                 <!-- <el-table-column prop="job_name" label="职务"></el-table-column> -->
-                <el-table-column prop="job_name" label="异动情况"></el-table-column>
-                <el-table-column prop="actual_work_day" label="工作天数"></el-table-column>       
-                <el-table-column prop="monthly_pay_amount" label="月薪"></el-table-column>
+                <el-table-column prop="job_name" label="异动情况" width="120" ></el-table-column>
+                <el-table-column prop="actual_work_day" label="工作天数" v-show:="false"></el-table-column>       
+                <!-- <el-table-column prop="monthly_pay_amount" label="月薪"></el-table-column>
                 <el-table-column prop="att_fee" label="考勤扣款"></el-table-column>
                 <el-table-column prop="att_award_fee" label="全勤奖"></el-table-column>
                 <el-table-column label="补贴" align='center' >
                     <el-table-column prop="traffic_fee" label="交通"></el-table-column>
                     <el-table-column prop="food_fee" label="餐费"></el-table-column>
                     <el-table-column prop="mobile_fee" label="通讯"></el-table-column>
-                </el-table-column>
+                </el-table-column> -->
+                 <template v-for='(col) in tableHeaders'>
+                    <el-table-column
+                    
+                        :show-overflow-tooltip="true"
+                        :prop="col.dataItem"
+                        :label="col.dataName"
+                        :key="col.dataItem"
+                    >
+                    </el-table-column>
+                    </template>
                 <el-table-column prop="wages_payable_amount" label="应发金额"></el-table-column>
                 <el-table-column label="代扣" align='center' >
                     <el-table-column prop="she_bao_fee" label="社保"></el-table-column>
@@ -165,6 +175,13 @@ export default {
                 pageSize:6,
                 pageIndex:1              
             },
+            tableHeaders:[  
+                            {dataItem: 'monthly_pay_amount',dataName: '月薪'},
+                            {dataItem: 'att_fee',dataName: '考勤扣款'}, 
+                            {dataItem: 'att_award_fee',dataName: '全勤奖'},                            
+                            {dataItem: 'traffic_fee',dataName: '交通'}, 
+                            {dataItem: 'food_fee',dataName: '餐费'}, 
+                            {dataItem: 'mobile_fee',dataName: '通讯'} ],
             entity:{
                 month_id:'201911',
                 tenant_id:'',

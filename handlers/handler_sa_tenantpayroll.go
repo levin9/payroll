@@ -1,17 +1,18 @@
 package handlers
 
 import (
-	"payroll/models"
 	"github.com/gin-gonic/gin"
+	"payroll/models"
 )
 
 func init() {
 	groupApi.GET("tenantpayroll", tenantpayrollAll)
-	groupApi.GET("tenantpayroll/:id",  tenantpayrollOne)
-	groupApi.POST("tenantpayroll",  tenantpayrollCreate)
-	groupApi.PATCH("tenantpayroll",  tenantpayrollUpdate)
-	groupApi.DELETE("tenantpayroll/:id",  tenantpayrollDelete)
+	groupApi.GET("tenantpayroll/:id", tenantpayrollOne)
+	groupApi.POST("tenantpayroll", tenantpayrollCreate)
+	groupApi.PATCH("tenantpayroll", tenantpayrollUpdate)
+	groupApi.DELETE("tenantpayroll/:id", tenantpayrollDelete)
 }
+
 //All
 func tenantpayrollAll(c *gin.Context) {
 	mdl := models.Tenantpayroll{}
@@ -20,18 +21,20 @@ func tenantpayrollAll(c *gin.Context) {
 	if handleError(c, err) {
 		return
 	}
+
 	list, total, err := mdl.All(query)
 	if handleError(c, err) {
 		return
 	}
 	jsonPagination(c, list, total, query)
 }
+
 //One
 func tenantpayrollOne(c *gin.Context) {
 	var mdl models.Tenantpayroll
-	
+
 	Tpid := c.Param("id")
-		
+
 	mdl.Tpid = Tpid
 	data, err := mdl.One()
 	if handleError(c, err) {
@@ -39,6 +42,7 @@ func tenantpayrollOne(c *gin.Context) {
 	}
 	jsonData(c, data)
 }
+
 //Create
 func tenantpayrollCreate(c *gin.Context) {
 	var mdl models.Tenantpayroll
@@ -52,6 +56,7 @@ func tenantpayrollCreate(c *gin.Context) {
 	}
 	jsonData(c, mdl)
 }
+
 //Update
 func tenantpayrollUpdate(c *gin.Context) {
 	var mdl models.Tenantpayroll
@@ -65,14 +70,13 @@ func tenantpayrollUpdate(c *gin.Context) {
 	}
 	jsonSuccess(c)
 }
+
 //Delete
 func tenantpayrollDelete(c *gin.Context) {
 	var mdl models.Tenantpayroll
 
-	
 	Tpid := c.Param("id")
-		
-	
+
 	mdl.Tpid = Tpid
 	errResult := mdl.Delete()
 	if handleError(c, errResult) {

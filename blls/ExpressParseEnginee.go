@@ -24,7 +24,11 @@ func (o *ExpressParseEnginee) Evaluate(formula string) (float64, string, error) 
 	for _, v := range arrs {
 		if v != `<nil>` {
 			v1 := strings.TrimRight(strings.TrimLeft(v, "["), "]")
-			formula = strings.ReplaceAll(formula, v, o.VarList[v1])
+			v1Val := o.VarList[v1]
+			if v1Val == "" {
+				fmt.Println("替换为空", v1, "=>", v1Val)
+			}
+			formula = strings.ReplaceAll(formula, v, v1Val)
 		}
 		//fmt.Println(v)
 	}
@@ -44,8 +48,8 @@ func Calc(formulaText string) (float64, error) {
 	result, err := expression.Evaluate()
 	if err != nil {
 		//handle err
-		//fmt.Println(err)
-		return -9999, err
+		fmt.Println(err)
+		return -999, err
 	}
 
 	v, err := result.Float64()

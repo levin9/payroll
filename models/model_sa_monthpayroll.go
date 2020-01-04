@@ -45,7 +45,7 @@ type Monthpayroll struct {
 	Housefee             float32    `gorm:"column:HouseFee" form:"house_fee" json:"house_fee" comment:"公积金费用" sql:"decimal(10,4)"`
 	Specjoballowance     float32    `gorm:"column:SpecJobAllowance" form:"spec_job_allowance" json:"spec_job_allowance" comment:"特殊岗位津贴" sql:"decimal(10,4)"`
 	Sangjiafee           float32    `gorm:"column:SangJiaFee" form:"sang_jia_fee" json:"sang_jia_fee" comment:"丧假" sql:"decimal(10,4)"`
-	Hunjiafee            float32    `gorm:"column:HunJIaFee" form:"hun_jia_fee" json:"hun_jia_fee" comment:"婚假" sql:"decimal(10,4)"`
+	Hunjiafee            float32    `gorm:"column:HunJiaFee" form:"hun_jia_fee" json:"hun_jia_fee" comment:"婚假" sql:"decimal(10,4)"`
 	Burvjiafee           float32    `gorm:"column:BuRvJiaFee" form:"bu_rv_jia_fee" json:"bu_rv_jia_fee" comment:"哺乳假" sql:"decimal(10,4)"`
 	Chanjiafee           float32    `gorm:"column:ChanJiaFee" form:"chan_jia_fee" json:"chan_jia_fee" comment:"产假" sql:"decimal(10,4)"`
 	Peichanjiafee        float32    `gorm:"column:PeiChanJiaFee" form:"pei_chan_jia_fee" json:"pei_chan_jia_fee" comment:"陪产假" sql:"decimal(10,4)"`

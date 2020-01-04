@@ -7,11 +7,25 @@ import (
 type VariableProvider struct {
 }
 
+func (o *VariableProvider) GetAll(TenantId string) map[string]string {
+	var list = &[]Element{}
+	result := make(map[string]string)
+	//list, total, err := mdl.All(query)
+	//fmt.Println("eeeeeeeeeeeeeeeeeee")
+	mysqlDB.Raw(" Select * from sa_element").Scan(&list)
+	for _, v := range *list {
+		result[v.Elemcode] = v.Elemname
+		//fmt.Println(v.Elemname)
+	}
+
+	return result
+}
+
 func (o *VariableProvider) Load(TenantId string) map[string]string {
 	result := make(map[string]string)
-	result["WorkDay"] = "当月工作天数"
+	result["WorkDay"] = "工作日总数"
 	result["PlanWorkDay"] = "应出勤天数"
-	result["ActualWorkDay"] = "当月工作天数"
+	result["ActualWorkDay"] = "当月出勤天数"
 	result["ChiDaoCount"] = "迟到早退"
 	result["0"] = "不扣费"
 	result["ChiDaoNum"] = "迟到时长"

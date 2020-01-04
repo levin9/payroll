@@ -41,7 +41,7 @@ type CalcVarItem struct {
 	HouseFee             float32    `gorm:"column:HouseFee" form:"house_fee" json:"house_fee" comment:"" `
 	SpecJobAllowance     float32    `gorm:"column:SpecJobAllowance" form:"spec_job_allowance" json:"spec_job_allowance" comment:"" `
 	SangJiaFee           float32    `gorm:"column:SangJiaFee" form:"sang_jia_fee" json:"sang_jia_fee" comment:"" `
-	HunJIaFee            float32    `gorm:"column:HunJIaFee" form:"hun_jia_fee" json:"hun_jia_fee" comment:"" `
+	HunJiaFee            float32    `gorm:"column:HunJiaFee" form:"hun_jia_fee" json:"hun_jia_fee" comment:"" `
 	BuRvJiaFee           float32    `gorm:"column:BuRvJiaFee" form:"bu_rv_jia_fee" json:"bu_rv_jia_fee" comment:"" `
 	ChanJiaFee           float32    `gorm:"column:ChanJiaFee" form:"chan_jia_fee" json:"chan_jia_fee" comment:"" `
 	PeiChanJiaFee        float32    `gorm:"column:PeiChanJiaFee" form:"pei_chan_jia_fee" json:"pei_chan_jia_fee" comment:"" `

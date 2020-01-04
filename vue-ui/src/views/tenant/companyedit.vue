@@ -238,7 +238,9 @@ import bottomBar from    '../../components/common/BottomBar.vue'
                 },
                 query:{
                     tenant_id:localStorage.getItem('user_tenant_id'),
-                    is_valid:1
+                    is_valid:1,
+                    order:" IsUsed desc,f_sortcode asc ",
+                    limit:30
                 },
                 payrollData:[ ],
                 attData:[],              
@@ -297,7 +299,7 @@ import bottomBar from    '../../components/common/BottomBar.vue'
                         console.log(error);
                         //alert('error..');
                     }); 
-            this.$fetch('tenantpayroll')
+            this.$fetch('tenantpayroll',this.query)
                     .then((response) => {
                         console.log(response);
                          this.payrollData=response.data;   

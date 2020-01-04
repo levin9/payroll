@@ -20,10 +20,11 @@ func (p *OperatorPayrollHandler) CalculateMonthPayroll(para CalcParameter) strin
 	}
 	//加载配置参数
 	provider := models.VariableProvider{}
-	standVarList := provider.Load(para.TenantId)
-	for k, s := range standVarList {
-		fmt.Println("映射关系", k, "=>", s)
-	}
+	standVarList := provider.GetAll(para.TenantId)
+	// fmt.Println("dddddd")
+	// for k, s := range standVarList {
+	// 	fmt.Println("映射关系", k, "=>", s)
+	// }
 	userDataList := payrollService.GetAllPayrollList(para.TenantId, para.MonthId)
 	for _, userData := range *userDataList {
 		enginee.VarList = p.changeToMap(userData, standVarList)
@@ -33,28 +34,40 @@ func (p *OperatorPayrollHandler) CalculateMonthPayroll(para CalcParameter) strin
 		var formulaResult float64
 		var formulaText string
 		for _, r := range *rulllist {
-			if r.IsHandCalc == 1 {
-				continue
-			}
+			fmt.Println("开始处理：", r.TenantPayrollName)
+			// if r.IsHandCalc == 1 {
+			// 	continue
+			// }
 			if r.TenantFormula == "" || r.FieldName == "" {
 				continue
 			}
-			formulaResult, formulaText, err = enginee.Evaluate(r.TenantFormula)
-			if err != nil {
-				//break;
-				fmt.Println("错误：", r.TenantPayrollName, "=>", r.TenantFormula, "=>", formulaText)
+			// if r.PayrollId!="AdjustFee"{
+			// 	continue
+			// }
+			if r.FieldName == "IncomeTaxAmount" {
+				formulaResult = 123
+			} else {
+				formulaResult, formulaText, err = enginee.Evaluate(r.TenantFormula)
+				if err != nil {
+					//break;
+					fmt.Println("错误：", r.TenantPayrollName, "=>", r.TenantFormula, "=>", formulaText)
+				}
 			}
 			//更新变量里的值
+			//
+			fmt.Println("更新的值：", r.FieldName, "=>", standVarList[r.FieldName], "=>", strconv.FormatFloat(float64(formulaResult), 'f', -3, 32))
 			enginee.VarList[standVarList[r.FieldName]] = strconv.FormatFloat(float64(formulaResult), 'f', -3, 32)
 
 			dao.AddField(r.FieldName, strconv.FormatFloat(float64(formulaResult), 'f', -3, 32), r.TenantPayrollName, formulaText)
-			if r.PayrollId == "" {
-				//计算个税
-				dao.AddField(`IncomeTaxAmount`, "1234.56", "个人所得税", "")
-			}
+			// if r.PayrollId == "" {
+			// 	//计算个税
+			// 	dao.AddField(`IncomeTaxAmount`, "1234.56", "个人所得税", "")
+			// }
 		}
 
 		//计算应发工资
+		//rull := 1
+		//formulaResult, formulaText, err = enginee.Evaluate("r.TenantFormula")
 
 		//计算实发工资
 		dao.SaveChange()
@@ -110,6 +123,7 @@ func (p *OperatorPayrollHandler) getVarValue(name string, input models.CalcVarIt
 	case "MobileFee":
 		return strconv.FormatFloat(float64(input.AssignFee), 'f', -3, 32)
 	case "SheBaoFee":
+		fmt.Println("社保费是：", input.SheBaoFee)
 		return strconv.FormatFloat(float64(input.SheBaoFee), 'f', -3, 32)
 	case "HouseFee":
 		return strconv.FormatFloat(float64(input.HouseFee), 'f', -3, 32)
@@ -117,8 +131,8 @@ func (p *OperatorPayrollHandler) getVarValue(name string, input models.CalcVarIt
 		return strconv.FormatFloat(float64(input.SpecJobAllowance), 'f', -3, 32)
 	case "SangJiaFee":
 		return strconv.FormatFloat(float64(input.SangJiaFee), 'f', -3, 32)
-	case "HunJIaFee":
-		return strconv.FormatFloat(float64(input.HunJIaFee), 'f', -3, 32)
+	case "HunJiaFee":
+		return strconv.FormatFloat(float64(input.HunJiaFee), 'f', -3, 32)
 	case "BuRvJiaFee":
 		return strconv.FormatFloat(float64(input.BuRvJiaFee), 'f', -3, 32)
 	case "ChanJiaFee":
@@ -138,6 +152,7 @@ func (p *OperatorPayrollHandler) getVarValue(name string, input models.CalcVarIt
 	case "ActualPayableAmount":
 		return strconv.FormatFloat(float64(input.ActualPayableAmount), 'f', -3, 32)
 	case "AdjustFee":
+		fmt.Println("AdjustFee=" ,input.AdjustFee)
 		return strconv.FormatFloat(float64(input.AdjustFee), 'f', -3, 32)
 	case "FreeTaxAmount":
 		return strconv.FormatFloat(float64(input.FreeTaxAmount), 'f', -3, 32)
@@ -202,6 +217,10 @@ func (p *OperatorPayrollHandler) changeToMap(input models.CalcVarItem, standVarL
 		if strings.HasPrefix(tempVar, "-") {
 			tempVar = "(" + tempVar + ")"
 		}
+		if tempVar == "" {
+			fmt.Println("添加的变量,", field, tempVar)
+			tempVar = "0.001"
+		}
 		result[standVarList[field]] = tempVar
 		fmt.Println("添加的变量", field, "=>", standVarList[field], "=>", tempVar)
 	}
@@ -264,5 +283,5 @@ func Tofloat64(inter interface{}) float64 {
 		return -99999
 	}
 
-	return -9999
+	return -99999
 }
