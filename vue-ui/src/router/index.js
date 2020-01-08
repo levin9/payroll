@@ -43,10 +43,15 @@ export default new Router({
                     meta: { title: '手工调整工资' }
                 },
                 {
-                    path: '/analysis',
-                    component: () => import(/* webpackChunkName: "icon" */ '../views/tenant/analysis.vue'),
-                    meta: { title: '薪酬计算' }
+                    path: '/attendance',
+                    component: () => import(/* webpackChunkName: "icon" */ '../views/tenant/attendance.vue'),
+                    meta: { title: '考勤管理' }
                 },
+                // {
+                //     path: '/analysis',
+                //     component: () => import(/* webpackChunkName: "icon" */ '../views/tenant/analysis.vue'),
+                //     meta: { title: '薪酬计算' }
+                // },
                 {
                     path: '/calculate',
                     component: () => import(/* webpackChunkName: "icon" */ '../views/tenant/calculate.vue'),

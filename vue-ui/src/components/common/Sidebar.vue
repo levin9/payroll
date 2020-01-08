@@ -79,8 +79,12 @@ export default {
                             title: '手工调整薪资'
                         },
                         {
+                            index: 'attendance',
+                            title: '考勤管理'
+                        },
+                        {
                             index: 'analysis',
-                            title: '薪酬分析'
+                            title: '薪酬分析11'
                         },
                         {
                             index: 'calculate',

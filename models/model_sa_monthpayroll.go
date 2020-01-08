@@ -17,6 +17,7 @@ type Monthpayroll struct {
 	Deptname             string     `gorm:"column:DeptName" form:"dept_name" json:"dept_name" comment:"部门" sql:"varchar(50)"`
 	Joblevel             string     `gorm:"column:JobLevel" form:"job_level" json:"job_level" comment:"职级" sql:"varchar(50)"`
 	Jobname              string     `gorm:"column:JobName" form:"job_name" json:"job_name" comment:"职务" sql:"varchar(50)"`
+	ChngRemark           string     `gorm:"column:ChngRemark" form:"chng_remark" json:"chng_remark" comment:"移动记录" sql:"varchar(50)"`
 	Monthlypayamount     float32    `gorm:"column:MonthlyPayAmount" form:"monthly_pay_amount" json:"monthly_pay_amount" comment:"月薪" sql:"decimal(10,0)"`
 	Workday              float32    `gorm:"column:WorkDay" form:"work_day" json:"work_day" comment:"工作天数" sql:"decimal(10,4)"`
 	Planworkday          float32    `gorm:"column:PlanWorkDay" form:"plan_work_day" json:"plan_work_day" comment:"应上班天数" sql:"decimal(10,4)"`
@@ -94,6 +95,12 @@ func (m *Monthpayroll) One() (one *Monthpayroll, err error) {
 func (m *Monthpayroll) All(q *PaginationQuery) (list *[]Monthpayroll, total uint, err error) {
 	list = &[]Monthpayroll{}
 	total, err = crudAll(m, q, list)
+	return
+}
+
+func (m *Monthpayroll) FindAll(q *PaginationQuery) (list *[]Monthpayroll, total uint, err error) {
+	list = &[]Monthpayroll{}
+	total, err = crudGetAll(m, q, list)
 	return
 }
 

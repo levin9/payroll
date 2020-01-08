@@ -52,6 +52,11 @@ func (m *Tenantadjustitem) FindAll(q *PaginationQuery) (list *[]Tenantadjustitem
 	total, err = crudGetAll(m, q, list)
 	return
 }
+func (m *Tenantadjustitem) FindByMap(map[string]interface{}) (list *[]Tenantadjustitem, err error) {
+	list = &[]Tenantadjustitem{}
+
+	return
+}
 
 //Update，更新
 func (m *Tenantadjustitem) Update() (err error) {

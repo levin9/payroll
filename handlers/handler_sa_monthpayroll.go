@@ -1,17 +1,18 @@
 package handlers
 
 import (
-	"payroll/models"
 	"github.com/gin-gonic/gin"
+	"payroll/models"
 )
 
 func init() {
 	groupApi.GET("monthpayroll", monthpayrollAll)
-	groupApi.GET("monthpayroll/:id",  monthpayrollOne)
-	groupApi.POST("monthpayroll",  monthpayrollCreate)
-	groupApi.PATCH("monthpayroll",  monthpayrollUpdate)
-	groupApi.DELETE("monthpayroll/:id",  monthpayrollDelete)
+	groupApi.GET("monthpayroll/:id", monthpayrollOne)
+	groupApi.POST("monthpayroll", monthpayrollCreate)
+	groupApi.PATCH("monthpayroll", monthpayrollUpdate)
+	groupApi.DELETE("monthpayroll/:id", monthpayrollDelete)
 }
+
 //All
 func monthpayrollAll(c *gin.Context) {
 	mdl := models.Monthpayroll{}
@@ -20,18 +21,23 @@ func monthpayrollAll(c *gin.Context) {
 	if handleError(c, err) {
 		return
 	}
-	list, total, err := mdl.All(query)
+	query.Where = WhereIf(c, query.Where, "MonthId", "MonthId='?'")
+	query.Where = WhereIf(c, query.Where, "TenantId", "TenantId='?'")
+	//query.Where = WhereIf(c, query.Where, "keyword", "MonthId='?'")
+
+	list, total, err := mdl.FindAll(query)
 	if handleError(c, err) {
 		return
 	}
 	jsonPagination(c, list, total, query)
 }
+
 //One
 func monthpayrollOne(c *gin.Context) {
 	var mdl models.Monthpayroll
-	
+
 	Id := c.Param("id")
-		
+
 	mdl.Id = Id
 	data, err := mdl.One()
 	if handleError(c, err) {
@@ -39,6 +45,7 @@ func monthpayrollOne(c *gin.Context) {
 	}
 	jsonData(c, data)
 }
+
 //Create
 func monthpayrollCreate(c *gin.Context) {
 	var mdl models.Monthpayroll
@@ -52,6 +59,7 @@ func monthpayrollCreate(c *gin.Context) {
 	}
 	jsonData(c, mdl)
 }
+
 //Update
 func monthpayrollUpdate(c *gin.Context) {
 	var mdl models.Monthpayroll
@@ -65,14 +73,13 @@ func monthpayrollUpdate(c *gin.Context) {
 	}
 	jsonSuccess(c)
 }
+
 //Delete
 func monthpayrollDelete(c *gin.Context) {
 	var mdl models.Monthpayroll
 
-	
 	Id := c.Param("id")
-		
-	
+
 	mdl.Id = Id
 	errResult := mdl.Delete()
 	if handleError(c, errResult) {

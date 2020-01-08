@@ -117,6 +117,12 @@ func crudGetAll(m interface{}, q *PaginationQuery, list interface{}) (total uint
 	return
 }
 
+func crudGetByMap(m map[string]interface{}, list interface{}) (err error) {
+	mysqlDB.Where(m).Find(&list)
+	return nil
+	//db.Where(map[string]interface{}{"name": "jinzhu", "age": 20}).Find(&users)
+}
+
 func crudOne(m interface{}, one interface{}) (err error) {
 	if mysqlDB.Where(m).First(one).RecordNotFound() {
 		return errors.New("resource is not found")

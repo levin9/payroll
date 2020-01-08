@@ -67,20 +67,10 @@
             >
                 <el-table-column prop="dept_name" label="部门" fixed width="120" ></el-table-column>
                 <el-table-column prop="real_name" label="姓名" fixed ></el-table-column>
-                <!-- <el-table-column prop="job_name" label="职务"></el-table-column> -->
-                <el-table-column prop="job_name" label="异动情况" width="120" ></el-table-column>
-                <el-table-column prop="actual_work_day" label="工作天数" v-show:="false"></el-table-column>       
-                <!-- <el-table-column prop="monthly_pay_amount" label="月薪"></el-table-column>
-                <el-table-column prop="att_fee" label="考勤扣款"></el-table-column>
-                <el-table-column prop="att_award_fee" label="全勤奖"></el-table-column>
-                <el-table-column label="补贴" align='center' >
-                    <el-table-column prop="traffic_fee" label="交通"></el-table-column>
-                    <el-table-column prop="food_fee" label="餐费"></el-table-column>
-                    <el-table-column prop="mobile_fee" label="通讯"></el-table-column>
-                </el-table-column> -->
+                <el-table-column prop="chng_remark" label="异动情况" width="120" ></el-table-column>
+                <el-table-column prop="actual_work_day" label="工作天数" v-show:="false"></el-table-column>    
                  <template v-for='(col) in tableHeaders'>
-                    <el-table-column
-                    
+                    <el-table-column                    
                         :show-overflow-tooltip="true"
                         :prop="col.dataItem"
                         :label="col.dataName"
@@ -102,7 +92,7 @@
                         <el-button
                             type="text"
                             icon="el-icon-edit"
-                            @click="handleEdit(scope.$index, scope.row)"
+                             @click="handleEdit(scope.$index, scope.row)"
                         >详情</el-button>                       
                     </template>
                 </el-table-column>
@@ -118,24 +108,25 @@
                 ></el-pagination>
             </div>               
         </div>
-          <el-dialog title="编辑-手工调整"  :visible.sync="dialogUpdateVisible" :width="width?width:'40%'">
-            <el-form :model="entity" ref="editForm" :rules="rules" label-width="100px" >
+        <div v-if="dialogUpdateVisible">
+          <el-dialog title="详情-薪酬详细"  :visible.sync="dialogUpdateVisible" :append-to-body='true'
+        :lock-scroll="false" :width="width?width:'60%'">
+            <el-form :model="entity" ref="editForm"  label-width="100px" >
+               <div>
+               <el-table :data="detailDataList"> 
+                    <el-table-column prop="fName" label="公式名称" fixed width="120" ></el-table-column>
+                    <el-table-column prop="fValue" label="备注"  ></el-table-column>
                
-                <el-form-item label="月份" prop="month_id" >  
-                       <el-date-picker
-                            v-model="query.month_id"
-                            type="month"
-                            placeholder="选择月"
-                            >                            
-                            </el-date-picker>
-                </el-form-item> 
-                          
+               </el-table>
+
+               </div>
             </el-form>
         <span slot="footer" class="dialog-footer">
             <el-button @click="dialogUpdateVisible = false">取 消</el-button>
             <el-button type="primary" @click="submitEdit">确 定</el-button>
         </span>
         </el-dialog>
+        </div>
         <el-dialog title="薪酬计算"  :visible.sync="dialogCalculateVisible" :width="width?width:'40%'">
             <el-form :model="entity" ref="createForm" :rules="rules" label-width="120px" >          
                 <el-form-item label="月份" prop="month_id" >  
@@ -168,7 +159,7 @@ export default {
     data() {
         return {            
             query: {
-                month_id:'201910',
+                month_id:new Date(),
                 tenant_id:localStorage.getItem('user_tenant_id'),
                 keyword: '',
                 order:'',          
@@ -183,7 +174,7 @@ export default {
                             {dataItem: 'food_fee',dataName: '餐费'}, 
                             {dataItem: 'mobile_fee',dataName: '通讯'} ],
             entity:{
-                month_id:'201911',
+                month_id:new Date(),
                 tenant_id:'',
                 person_name:'',
                 person_id:'00d7094d-7d2b-48db-94aa-3c02fc1c0eff',
@@ -195,6 +186,7 @@ export default {
                 tenant_id:''
             },
             tableData: [],
+            detailDataList:[],
             multipleSelection: [],
             delList: [],
             pageTotal: 0,
@@ -259,8 +251,26 @@ export default {
         },
          // 修改行操作
         handleEdit(index, row) {        
-            this.dialogUpdateVisible=true;
-            this.entity=row;                
+            //this.dialogUpdateVisible=true;
+            this.entity=row;      
+            this.detailDataList=null;
+            if (row.ext_info !=''|| row.ext_info!='[]'){                
+                var remark =row.ext_info.substring(1,row.ext_info.length-2);
+                alert(remark);
+                // var ss = remark.split(",");
+                // alert(ss.length);
+                // for(var i=0;i<ss.length;i++){
+                //     var s =ss[i].split(":");
+                //    this.detailDataList.push({fName:"a",fValue:i});
+                //     if (s.length==2){
+                        
+                //     }
+                // }
+            }
+        
+            //this.detailDataList=row.ext_info;
+            
+            //alert(detailDataList);    
         },
            // 保存编辑
         submitEdit(){  
