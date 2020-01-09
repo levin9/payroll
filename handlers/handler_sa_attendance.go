@@ -91,7 +91,7 @@ func attendanceDelete(c *gin.Context) {
 
 //Update
 func attendanceImport(c *gin.Context) {
-	input := AttImportInput{}
+	input := models.AttImportInput{}
 	if err := c.ShouldBind(&input); handleError(c, err) {
 		return
 	}
@@ -109,10 +109,4 @@ func attendanceImport(c *gin.Context) {
 	// fmt.Println(input.TenantId)
 
 	jsonSuccess(c)
-}
-
-type AttImportInput struct {
-	BizType  string `json:"biz_type"`
-	FilePath string `json:"file_path"`
-	TenantId string `json:"tenant_id"`
 }
