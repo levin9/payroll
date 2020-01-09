@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"payroll/models"
 	"payroll/utils"
+	"errors"
 	//"unsafe"
 	"github.com/360EntSecGroup-Skylar/excelize"
 )
@@ -36,4 +37,7 @@ func (o *ImportAttendanceService) Import(input models.AttImportInput) error {
 	}
 	fmt.Println(xlsx)
 	return nil
+}
+func throwException(msg string) error {
+	return errors.New(msg)
 }

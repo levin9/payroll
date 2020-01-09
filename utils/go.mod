@@ -1,3 +1,3 @@
-module github.com/levin9/payroll/utils
+module payroll/utils
 
 go 1.13
