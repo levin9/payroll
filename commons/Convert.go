@@ -1,5 +1,9 @@
 package commons
 
-func Print() {
+import (
+	"fmt"
+)
 
+func Print() {
+	fmt.Println("hello,commons")
 }

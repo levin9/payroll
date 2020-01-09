@@ -127,8 +127,6 @@ github.com/leodido/go-urn v1.1.0 h1:Sm1gr51B1kKyfD2BlRcLSiEkffoG96g6TPv6eRoEiB8=
 github.com/leodido/go-urn v1.1.0/go.mod h1:+cyI34gQWZcE1eQU7NVgKkkzdXDQHr1dBMtdAPozLkw=
 github.com/levin9/formula v0.0.0-20200101154413-562f34da0e84 h1:m/Nj6RJxD5q8Bwn6PAoCz37uWmliH9PmBzRvbG/jSKI=
 github.com/levin9/formula v0.0.0-20200101154413-562f34da0e84/go.mod h1:oqDNuWbdrRg0wdSlg6yVVM1sMNnahLt3zZjFOgZp0Fc=
-github.com/levin9/payroll/utils v0.0.0-20200108162034-9538e8d09262 h1:2NkhmCv61Y9U0SeCkS82CNgKj8ah2AM3yD2AaF7Oca8=
-github.com/levin9/payroll/utils v0.0.0-20200108162034-9538e8d09262/go.mod h1:MpTunhgI9duqCV+Abn8erVzuakczDJbOmRrtWw/lf2Q=
 github.com/lib/pq v1.1.1 h1:sJZmqHoEaY7f+NPP8pgLB/WxulyR3fewgCM2qaSlBb4=
 github.com/lib/pq v1.1.1/go.mod h1:5WUZQaWbwv1U+lTReE5YruASi9Al49XbQIvNi/34Woo=
 github.com/magiconair/properties v1.8.1 h1:ZC2Vc7/ZFkGmsVC9KvOjumD+G5lXy2RtTKyzRKO2BQ4=
@@ -214,8 +212,6 @@ github.com/ugorji/go/codec v1.1.7 h1:2SvQaVZ1ouYrrKKwoSk2pzd4A9evlKJb9oTL+OaLUSs
 github.com/ugorji/go/codec v1.1.7/go.mod h1:Ax+UKWsSmolVDwsd+7N3ZtXu+yMGCf907BLYF3GoBXY=
 github.com/xiang90/probing v0.0.0-20190116061207-43a291ad63a2/go.mod h1:UETIi67q53MR2AWcXfiuqkDkRtnGDLqkBTpCHuJHxtU=
 github.com/xordataexchange/crypt v0.0.3-0.20170626215501-b2862e3d0a77/go.mod h1:aYKd//L2LvnjZzWKhF00oedf4jCCReLcmhLdhm1A27Q=
-github.com/yidane/formula v0.0.0-20190507083929-d272721f4dd9 h1:2+qU6sOgvrkicbUwIclAZ67nFOaM2mu5/1J22+I/3MU=
-github.com/yidane/formula v0.0.0-20190507083929-d272721f4dd9/go.mod h1:vUhtXwXDSh8NKHxIGRY1HvLhoC4Hba1RL62whvmtPUk=
 go.etcd.io/bbolt v1.3.2/go.mod h1:IbVyRI1SCnLcuJnV2u8VeU0CEYM7e686BmAb1XKL+uU=
 go.opencensus.io v0.20.1/go.mod h1:6WKK9ahsWS3RSO+PY9ZHZUfv2irvY6gN279GOPZjmmk=
 go.uber.org/atomic v1.4.0/go.mod h1:gD2HeocX3+yG+ygLZcrzQJaqmWj9AIm7n08wl/qW/PE=

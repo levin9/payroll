@@ -1,10 +1,12 @@
 package blls
 
 import (
-	"fmt"
-	"payroll/models"
-	"payroll/utils"
 	"errors"
+	"fmt"
+	"payroll/commons"
+	"payroll/models"
+
+
 	//"unsafe"
 	"github.com/360EntSecGroup-Skylar/excelize"
 )
@@ -30,12 +32,17 @@ func (o *ImportAttendanceService) Import(input models.AttImportInput) error {
 		if rIndex == 0 || rIndex == 1 {
 			continue
 		}
-		errorMsg = []string{}
-		attendance := new(model.Attendance)
-		
-		account.FullName = utils.Trim(row[0])
+		errorMsg := []string{}
+		attendance := new(models.Attendance)
+
+		//account.FullName =" utils.Trim(row[0])"
+		fmt.Println(attendance)
+		fmt.Println(errorMsg)
+		fmt.Println(row)
+		fmt.Println(style)
 	}
 	fmt.Println(xlsx)
+	commons.Print()
 	return nil
 }
 func throwException(msg string) error {
