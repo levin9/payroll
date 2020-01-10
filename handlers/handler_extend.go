@@ -3,7 +3,7 @@ package handlers
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/levin9/payroll/blls"
+	"payroll/blls"
 	"payroll/models"
 )
 

@@ -42,27 +42,27 @@
                <el-table-column prop="real_name" label="姓名"></el-table-column> 
                <!-- <el-table-column prop="month_id" label="月份"></el-table-column>       -->
                <el-table-column label="迟到"  >     
-                    <el-table-column prop="chi_dao_count" label="次数"></el-table-column>  
-                    <el-table-column prop="chi_dao_num" label="时长"></el-table-column>  
+                    <el-table-column prop="chi_dao_count" label="次数" width="50" ></el-table-column>  
+                    <el-table-column prop="chi_dao_num" label="时长" width="50"></el-table-column>  
                 </el-table-column>   
                 <el-table-column label="早退">   
-                    <el-table-column prop="zao_tui_num" label="次数"></el-table-column>  
-                    <el-table-column prop="zao_tui_num" label="时长"></el-table-column> 
+                    <el-table-column prop="zao_tui_num" label="次数" width="50"></el-table-column>  
+                    <el-table-column prop="zao_tui_num" label="时长" width="50"></el-table-column> 
                  </el-table-column>  
                 <el-table-column label="常见假期">   
-                    <el-table-column prop="tiao_xiu_num" label="调休"></el-table-column>  
-                    <el-table-column prop="shi_jia_num" label="事假"></el-table-column>  
-                    <el-table-column prop="sick_num" label="病假"></el-table-column>  
-                    <el-table-column prop="dai_xin_shi_jia_num" label="带薪假"></el-table-column>
+                    <el-table-column prop="tiao_xiu_num" label="调休" width="50"></el-table-column>  
+                    <el-table-column prop="shi_jia_num" label="事假" width="50"></el-table-column>  
+                    <el-table-column prop="sick_num" label="病假" width="50"></el-table-column>  
+                    <el-table-column prop="dai_xin_shi_jia_num" label="带薪假" width="65"></el-table-column>
                 </el-table-column>  
-                <el-table-column prop="kuang_gong_num" label="考勤空白"></el-table-column>
-                <el-table-column prop="kong_bai_num" label="旷工"></el-table-column>
-                <el-table-column prop="bu_rv_jia_num" label="哺乳假"></el-table-column> 
-                <el-table-column prop="pei_chan_jia_num" label="陪产假"></el-table-column>
-                <el-table-column prop="chan_jia_num" label="产假"></el-table-column>
-                <el-table-column prop="hun_jia_num" label="婚假"></el-table-column>
-                <el-table-column prop="sang_jia_num" label="丧假"></el-table-column>                      
-                <el-table-column label="操作" width="180" align="center">
+                <el-table-column prop="kuang_gong_num" label="考勤空白" width="80" v-if="show" ></el-table-column>
+                <el-table-column prop="kong_bai_num" label="旷工" width="50"></el-table-column>
+                <el-table-column prop="bu_rv_jia_num" label="哺乳假" width="65" v-if="show" ></el-table-column> 
+                <el-table-column prop="pei_chan_jia_num" label="陪产假" width="65"></el-table-column>
+                <el-table-column prop="chan_jia_num" label="产假" width="50"></el-table-column>
+                <el-table-column prop="hun_jia_num" label="婚假" width="50"></el-table-column>
+                <el-table-column prop="sang_jia_num" label="丧假" width="50"></el-table-column>                      
+                <el-table-column label="操作" width="70" align="center">
                     <template slot-scope="scope">
                         <el-button
                             type="text"
@@ -116,7 +116,7 @@
                 <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
                 </el-upload>
         </div>
-            <span slot="footer" class="dialog-footer">
+            <span slot="footer" class="dialog-footer">               
                 <el-button @click="uploadVisible = false">取 消</el-button>
                 <el-button type="primary" @click="importData">确 定</el-button>
             </span>
@@ -142,6 +142,7 @@ export default {
             delList: [],
             editVisible: false,
             uploadVisible:false,
+            uploadFilePath:'',
             pageTotal: 0,
             form: {},
             idx: -1,
@@ -176,7 +177,7 @@ export default {
         },
          // 修改行操作
         handleEdit(index, row) {
-            this.$router.push({path:'/personaledit',query: {id: row.person_id}})             
+            this.$router.push({path:'/attendanceedit',query: {id: row.id}})             
         },
         // 删除操作
         handleDelete(index, row) {
@@ -199,17 +200,27 @@ export default {
                     }); 
             }).catch(() => {});
         },
-        uploadFile(param) {           
-          var fileObj = param.file
-          console.log(fileObj)
-          this.file = fileObj
-          var FileController = 'http://127.0.0.1:5555/api/v1/upload'    // 接收上传文件的后台地址
-          var form = new FormData()    // FormData 对象
-          form.append('file', fileObj)    // 文件对象
-          form.append('biztype', 'temp_import')    // 其他参数
-          var xhr = new XMLHttpRequest()    // XMLHttpRequest 对象
-          xhr.open('post', FileController, true)
-          xhr.send(form)
+        uploadFile(param) {       
+            var that = this;
+          var fileObj = param.file;
+          console.log(fileObj);
+          this.file = fileObj;
+          var FileController = 'http://127.0.0.1:5555/api/v1/upload'   ; // 接收上传文件的后台地址
+          var form = new FormData();    // FormData 对象
+          form.append('file', fileObj);    // 文件对象
+          form.append('biztype', 'temp_import');    // 其他参数
+          var xhr = new XMLHttpRequest();    // XMLHttpRequest 对象
+          xhr.open('post', FileController, true);
+          xhr.send(form);          
+          //若响应完成且请求成功
+          xhr.onreadystatechange = function(){
+            if(xhr.readyState === 4 && xhr.status === 200){
+                //do something, e.g. request.responseText
+                var result = JSON.parse(xhr.responseText);                
+                that.uploadFilePath=result.path;
+            }
+          }
+         
         },
         handleImport(){
             this.uploadVisible=true;
@@ -237,17 +248,17 @@ export default {
         //},
         // 保存编辑
         importData() {
+            var that = this;        
             var filePara = {
-                                file_path:"",
+                                file_path:this.uploadFilePath,
                                 biz_type:'temp_import',
                                 tenant_id:localStorage.getItem('user_tenant_id')
-                            };
+                            };            
             this.$post('attendanceimport',filePara )
             .then((response) => {
                 console.log(response);
-
                 this.uploadVisible = false;
-                this.$message.success(`修改第 ${this.idx + 1} 行成功`);
+                this.$message.success(`上传成功`);
                 this.$set(this.tableData, this.idx, this.form);
                
             }).catch(function(error){

@@ -26,10 +26,12 @@ func init() {
 		}
 		dir, _ := os.Getwd()
 		//filePath := fmt.Sprintf(biztype, `\`, header.Filename)
-		filePath := dir + `/files/` + biztype + `/` + time.Now().Format("2006/01/02/")
+		servPath := `/files/` + biztype + `/` + time.Now().Format("2006/01/02/")
+		filePath := dir + servPath
 		//fmt.Println(filePath)
 		os.MkdirAll(filePath, os.ModePerm)
 		os.Mkdir(filePath, os.ModePerm)
+
 		out, err_file := os.Create(filePath + header.Filename)
 		if err_file != nil {
 			fmt.Println("can't create")
@@ -42,8 +44,15 @@ func init() {
 			context.String(http.StatusBadRequest, "fail")
 			log.Fatal(err)
 		}
-		context.String(http.StatusOK, "success file", filePath)
-
+		result := UploadResult{}
+		result.Code = "success"
+		result.Path = servPath + header.Filename
+		context.JSON(http.StatusOK, result)
 	})
 
+}
+
+type UploadResult struct {
+	Code string `json:"code"`
+	Path string `json:"path"`
 }

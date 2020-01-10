@@ -3,7 +3,7 @@ package handlers
 import (
 	"fmt"
 	"payroll/models"
-
+	"payroll/blls"
 	//"unsafe"
 
 	"github.com/gin-gonic/gin"
@@ -97,6 +97,8 @@ func attendanceImport(c *gin.Context) {
 	}
 	fmt.Println(input.TenantId)
 
+	mgr := blls.ImportAttendanceService{}
+	mgr.Import(input)
 	// respBytes, err := ioutil.ReadAll(c.Request.Body)
 	// if err != nil {
 	// 	fmt.Println(err.Error())

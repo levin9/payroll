@@ -1,8 +1,8 @@
 package models
 
 import (
-	"fmt"
 	"encoding/json"
+	"fmt"
 )
 
 type UpdatePayrollDao struct {
@@ -32,8 +32,8 @@ func (o *UpdatePayrollDao) SaveChange() {
 	for k, v := range o.Data {
 		sql = sql + k + "=" + v + ","
 	}
-	formulaText,_:=json.Marshal(o.Tips)
-	sql = sql +" ExtInfo='" +  string(formulaText) +"'"
+	formulaText, _ := json.Marshal(o.Tips)
+	sql = sql + " ExtInfo='" + string(formulaText) + "'"
 	sql = sql + " ,F_ModifyDate=now() ,F_ModifyUserName='" + o.CreateBy + "' "
 	sql = sql + " where id='" + o.Id + "'"
 	fmt.Println(sql)

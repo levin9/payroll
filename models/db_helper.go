@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"strconv"
 	"strings"
-
+	
 	"github.com/jinzhu/gorm"
 )
 
@@ -20,6 +20,16 @@ type PaginationQuery struct {
 	PageSize  uint   `form:"pageSize"`
 	PageIndex uint   `form:"pageIndex"`
 	//Conditions map[string]interface{}
+}
+
+func CreateCondition(MonthId, TenantId string) *PaginationQuery {
+	query := PaginationQuery{}
+	query.Where = " MonthId='" + MonthId+"' and TenantId='" + TenantId +"'"
+	query.PageIndex=0
+	query.PageSize=1000
+	query.Limit=1000
+	query.Offset=0
+	return &query
 }
 
 // func (pq *PaginationQuery) AppendSql(template string, nVal interface{}) {
