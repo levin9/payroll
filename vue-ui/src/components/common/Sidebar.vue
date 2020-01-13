@@ -74,18 +74,22 @@ export default {
                             index: 'personal',
                             title: '员工管理'
                         },
+                        {
+                            index: 'basemonth',
+                            title: '月份管理'
+                        },
                          {
                             index: 'adjuest',
                             title: '手工调整薪资'
                         },
                         {
                             index: 'attendance',
-                            title: '考勤管理'
+                            title: '月度考勤'
                         },
-                        {
-                            index: 'analysis',
-                            title: '薪酬分析11'
-                        },
+                        // {
+                        //     index: 'analysis',
+                        //     title: '薪酬分析11'
+                        // },
                         {
                             index: 'calculate',
                             title: '薪酬计算'

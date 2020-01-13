@@ -221,7 +221,7 @@ export default {
             this.$set(this.query, 'pageIndex', val);
             this.getData();
         },
-         dateFormat:function(row,column){
+        dateFormat:function(row,column){
         var t=new Date(row.join_date);//row 表示一行数据, updateTime 表示要格式化的字段名称   
         return t.getFullYear()+"-"+(t.getMonth()+1)+"-"+t.getDate();
     }

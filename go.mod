@@ -20,4 +20,5 @@ require (
 
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/viper v1.6.1
+	github.com/tealeg/xlsx v1.0.5
 )

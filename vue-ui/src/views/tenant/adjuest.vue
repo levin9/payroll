@@ -181,7 +181,7 @@ export default {
             this.entity.tenant_id=localStorage.getItem('user_tenant_id');  
             this.entity.month_id="201911";
             this.entity.person_id='00d7094d-7d2b-48db-94aa-3c02fc1c0eff';
-            this.entity.person_name="无名";
+            this.entity.person_name="";
             this.entity.amount=0;
             this.entity.adjest_remark="";
            

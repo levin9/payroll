@@ -9,12 +9,23 @@
         </div>
         <div class="container">
             <div class="handle-box" style="text-align:center; margin-top:-20px; margin-bottom:40px;" >
-                 <el-col  :span="6">
+                   <el-col  :span="5">
+                        <el-date-picker
+                            v-model="query.month_id"
+                            type="month"
+                            placeholder="选择月"
+                            @change="getData" >
+                            
+                            </el-date-picker>
+                            <el-button slot="append" icon="el-icon-search" @click="handleSearch" ></el-button>
+                    
+                 </el-col>
+                 <el-col  :span="5">
                     <el-input placeholder="请输入内容" v-model="query.name"  class="input-with-select">                 
                     <el-button slot="append" icon="el-icon-search" ></el-button>
                     </el-input>  
                  </el-col>
-                  <el-col  :span="12">
+                  <el-col  :span="8">
                       &nbsp;
                  </el-col>
                   <el-col  :span="6">
@@ -23,7 +34,7 @@
                         <el-button-group>
                             <!-- <el-button icon="el-icon-plus" @click="handleInsert" >新增</el-button>                 -->
                             <el-button  icon="el-icon-upload" @click="handleImport" >导入</el-button>
-                            <el-button  icon="el-icon-plus" @click="handleInsert" >导出</el-button>
+                            <el-button  icon="el-icon-plus" @click="handleExport" >导出</el-button>
                             
 
                         </el-button-group>
@@ -53,15 +64,19 @@
                     <el-table-column prop="tiao_xiu_num" label="调休" width="50"></el-table-column>  
                     <el-table-column prop="shi_jia_num" label="事假" width="50"></el-table-column>  
                     <el-table-column prop="sick_num" label="病假" width="50"></el-table-column>  
+                    <el-table-column prop="annual_leave_num" label="年假" width="50"></el-table-column>
                     <el-table-column prop="dai_xin_shi_jia_num" label="带薪假" width="65"></el-table-column>
+                     
                 </el-table-column>  
                 <el-table-column prop="kuang_gong_num" label="考勤空白" width="80" v-if="show" ></el-table-column>
                 <el-table-column prop="kong_bai_num" label="旷工" width="50"></el-table-column>
-                <el-table-column prop="bu_rv_jia_num" label="哺乳假" width="65" v-if="show" ></el-table-column> 
-                <el-table-column prop="pei_chan_jia_num" label="陪产假" width="65"></el-table-column>
-                <el-table-column prop="chan_jia_num" label="产假" width="50"></el-table-column>
-                <el-table-column prop="hun_jia_num" label="婚假" width="50"></el-table-column>
-                <el-table-column prop="sang_jia_num" label="丧假" width="50"></el-table-column>                      
+                <el-table-column label="其他假期"> 
+                    <el-table-column prop="bu_rv_jia_num" label="哺乳假" width="65" v-if="show" ></el-table-column> 
+                    <el-table-column prop="pei_chan_jia_num" label="陪产假" width="65"></el-table-column>
+                    <el-table-column prop="chan_jia_num" label="产假" width="50"></el-table-column>
+                    <el-table-column prop="hun_jia_num" label="婚假" width="50"></el-table-column>
+                    <el-table-column prop="sang_jia_num" label="丧假" width="50"></el-table-column>                      
+                </el-table-column>  
                 <el-table-column label="操作" width="70" align="center">
                     <template slot-scope="scope">
                         <el-button
@@ -226,6 +241,36 @@ export default {
             this.uploadVisible=true;
             this.editVisible=false;            
         },
+        handleExport(){
+             var that = this;        
+            var filePara = {
+                                file_path:this.uploadFilePath,
+                                biz_type:'temp_export',
+                                month_id:"201910",
+                                tenant_id:localStorage.getItem('user_tenant_id')
+                            };            
+            this.$post('downloadAttendance',filePara )
+            .then((response) => {
+                console.log(response);
+                //this.uploadVisible = false;
+                 window.open("127.0.0.1:5555/2020-01-12-app.log");
+                imgURL="127.0.0.1:5555/2020-01-12-app.log";
+                var oPop = window.open(imgURL,"","width=1, height=1, top=5000, left=5000");
+                for(; oPop.document.readyState != "complete"; )
+                {
+                if (oPop.document.readyState == "complete")break;
+                }
+                oPop.document.execCommand("SaveAs");
+                oPop.close();
+                this.$message.success(`导出成功`);
+                //this.$set(this.tableData, this.idx, this.form);
+               
+            }).catch(function(error){
+                console.log(error);
+                this.$message.error(error);                
+            }); 
+
+        },
         // 多选操作
         handleSelectionChange(val) {
             this.multipleSelection = val;
@@ -252,6 +297,7 @@ export default {
             var filePara = {
                                 file_path:this.uploadFilePath,
                                 biz_type:'temp_import',
+                                month_id:"201910",
                                 tenant_id:localStorage.getItem('user_tenant_id')
                             };            
             this.$post('attendanceimport',filePara )

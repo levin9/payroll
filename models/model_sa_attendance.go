@@ -13,6 +13,8 @@ type Attendance struct {
 	Tenantid        string     `gorm:"column:TenantId" form:"tenant_id" json:"tenant_id" comment:"租户编号" sql:"varchar(50),MUL"`
 	Personid        string     `gorm:"column:PersonId" form:"person_id" json:"person_id" comment:"雇员编号" sql:"varchar(50)"`
 	Monthid         string     `gorm:"column:MonthId" form:"month_id" json:"month_id" comment:"月份编号" sql:"varchar(50)"`
+	RealName        string     `gorm:"column:RealName" form:"real_name" json:"real_name" comment:"姓名" sql:"varchar(50)"`
+	DeptName        string     `gorm:"column:DeptName" form:"dept_name" json:"dept_name" comment:"部门" sql:"varchar(50)"`
 	Chidaocount     float32    `gorm:"column:ChiDaoCount" form:"chi_dao_count" json:"chi_dao_count" comment:"迟到次数" sql:"decimal(10,4)"`
 	Chidaonum       float32    `gorm:"column:ChiDaoNum" form:"chi_dao_num" json:"chi_dao_num" comment:"迟到时间" sql:"decimal(10,4)"`
 	ZaoTuicount     float32    `gorm:"column:ZaoTuiCount" form:"zao_tui_count" json:"zao_tui_count" comment:"早退次数" sql:"decimal(10,4)"`

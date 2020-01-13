@@ -38,6 +38,11 @@ export default new Router({
                     meta: { title: '员工管理' }
                 },
                 {
+                    path: '/basemonth',
+                    component: () => import(/* webpackChunkName: "icon" */ '../views/tenant/basemonth.vue'),
+                    meta: { title: '月份设置' }
+                },
+                {
                     path: '/adjuest',
                     component: () => import(/* webpackChunkName: "icon" */ '../views/tenant/adjuest.vue'),
                     meta: { title: '手工调整工资' }
@@ -46,6 +51,11 @@ export default new Router({
                     path: '/attendance',
                     component: () => import(/* webpackChunkName: "icon" */ '../views/tenant/attendance.vue'),
                     meta: { title: '考勤管理' }
+                },
+                {
+                    path: '/attendanceedit',
+                    component: () => import(/* webpackChunkName: "icon" */ '../views/tenant/attendanceedit.vue'),
+                    meta: { title: '考勤编辑' }
                 },
                 // {
                 //     path: '/analysis',

@@ -12,127 +12,114 @@
              </div>                
         </div>
         <div class="container">
-          <el-form ref="form" :model="formModel" label-width="100px" >
-            <el-tab-pane label="基本信息" name="baseinfo">
-                     <el-row>
-                        <el-col span="8">
-                            <el-form-item label="公司名称" prop="full_name" required="true">
-                                <el-input v-model="formModel.full_name" ></el-input>
-                            </el-form-item>
-                            <input type="hidden" id="tenant_id" v-bind:value="formModel.tenant_id" > </input>
+          <el-form ref="form" :model="formModel" label-width="260px" >
+            <el-row>
+                <el-col span="8">
+                      <el-form-item label="姓名" prop="real_name"  size="mini" label-width="100px">
+                        <el-input   v-model="formModel.real_name"   readonly ></el-input></el-form-item>               
+                    </el-form-item>
 
-                        </el-col>
-                        <el-col span="1"> &nbsp; </el-col>    
-                        <el-col span="8">
-                            <el-form-item label="公司简称" prop="simple_name" required="true" ><el-input v-model="formModel.simple_name" ></el-input></el-form-item>
-                        </el-col>
-                     </el-row>
-                     <el-row>
-                        <el-col span="8">
-                            <el-form-item label="联系人"  prop="contact_name" required="true"  ><el-input v-model="formModel.contact_name" ></el-input></el-form-item>
-                        </el-col>
-                        <el-col span="1"> &nbsp; </el-col>    
-                        <el-col span="12">
-                            <el-form-item label="联系人称呼" prop="contact_title" required="true"  >
-                                <el-radio-group v-model="formModel.contact_title">                                       
-                                        <el-radio v-for="title in allcontact_titles"  :label="title" :key="title">{{title}}</el-radio>
-                                    </el-radio-group>
-                            </el-form-item>
-                        </el-col>
-                     </el-row>
-                    <el-row>
-                        <el-col span="8">
-                            <el-form-item label="联系电话" prop="contact_phone" ><el-input v-model="formModel.contact_phone" ></el-input></el-form-item>
-                        </el-col>
-                        <el-col span="1"> &nbsp; </el-col>    
-                        <el-col span="8">
-                            <el-form-item label="手机" prop="contact_mobile"><el-input v-model="formModel.contact_mobile" ></el-input></el-form-item>
-                        </el-col>
-                     </el-row>
-                     <el-row>
-                        <el-col span="17">
-                            <el-form-item label="联系人邮件" prop="contact_email"   >
-                                <el-input v-model="formModel.contact_email" ></el-input>
-                            </el-form-item>
-                        </el-col>
-                     
-                     </el-row>
-                     <el-row>
-                        <el-col span="8">
-                            <el-form-item label="开始日期" prop="tenant_start_time">
-                                <el-date-picker v-model="formModel.tenant_start_time"
-                                    dateType="date"
-                                    placeholder="选择日期"
-                                    format="yyyy 年 MM 月 dd 日"
-                                    value-format="2019-12-26T09:46:31 08:00"
-                                ></el-date-picker></el-form-item>
-                        </el-col>
-                        <el-col span="1"> &nbsp; </el-col>    
-                        <el-col span="8">
-                            <el-form-item label="结束日期" prop="tenant_end_time">
-                                <el-date-picker v-model="formModel.tenant_end_time"
-                                    dateType="date"
-                                    placeholder="选择日期"
-                                    format="yyyy 年 MM 月 dd 日"
-                                    value-format="2019-12-26T09:46:31 08:00" >
-                                </el-date-picker></el-form-item>
-                        </el-col>
-                     </el-row>                   
-                </el-tab-pane>
-                <el-tab-pane label="系统设置" name="systemset">               
-                     <el-row>
-                        <el-col span="18">
-                            <el-form-item label="考勤来源" prop="hr_source"  label-width="100px">
-                                <el-radio-group v-model="formModel.hr_source">
-                                        <el-radio :label="Excel">Excel导入</el-radio>
-                                        <el-radio :label="DingTalk">从钉钉抓取</el-radio>
-                                    </el-radio-group>
-                            </el-form-item>
-                        </el-col>                       
-                     </el-row>
-                     <el-row>
-                        <el-col span="18">
-                            <el-form-item label="人事来源" prop="att_source"  label-width="100px">
-                                  <el-radio-group v-model="formModel.att_source">
-                                        <el-radio :label="Excel">Excel导入</el-radio>
-                                        <el-radio :label="DingTalk">从钉钉抓取</el-radio>                                        
-                                    </el-radio-group>
-                            </el-form-item>
-                        </el-col>                       
-                     </el-row>
-                   <el-row>
-                        <el-col span="18">
-                            <el-form-item label="社保设置" prop="buy_she_bao"  >
-                                    <el-radio-group v-model="formModel.buy_she_bao">
-                                        <el-radio :label="normal-buy">15日前入职即购买</el-radio>
-                                        <el-radio :label="regular-buy">转正月才购买</el-radio>   
-                                        <el-radio :label="none-buy">不购买社保</el-radio>                                          
-                                    </el-radio-group>
-                            </el-form-item>
-                        </el-col>                       
-                     </el-row>
-                            <el-row>
-                        <el-col span="10">
-                            <el-form-item label="薪资周期" prop="payroll_day" required="true" size="mini" label-width="100px">
-                             <el-input-number v-model="formModel.payroll_day"   :min="1" :max="31" label="请选择每月最后一天"></el-input-number>
-                            </el-form-item>
-                        </el-col>      
-                     </el-row>
-                     <el-row>
-                        <el-col span="10">
-                            <el-form-item label="公积金比例" prop="house_rate" required="true" >                            
-                                <el-input-number v-model="formModel.house_rate"  :precision="2" :step="1"  :min="1" :max="20" ></el-input-number>
-                            </el-form-item>
-                        </el-col>                       
-                     </el-row>
-                     <el-row>
-                        <el-col span="10">
-                            <el-form-item label="社保比例" prop="she_bao_rate" required="true" >
-                                <el-input-number v-model="formModel.she_bao_rate" :precision="2" :step="1"  :min="1" :max="20" ></el-input-number>
-                            </el-form-item>
-                        </el-col>                       
-                     </el-row>  
-       
+                </el-col>
+                <el-col span="8">
+                                  <el-form-item label="姓名" prop="dept_name"  size="mini" label-width="100px">
+                        <el-input  v-model="formModel.dept_name"  readonly ></el-input></el-form-item>
+                </el-col>
+                <el-col span="8">
+                <el-form-item label="月份" prop="month_id" size="mini" label-width="100px">
+                        <el-input v-model="formModel.month_id"  readonly ></el-input></el-form-item>
+                </el-col>                        
+            </el-row>
+              <el-row>
+                <el-col span="8">
+                    <el-form-item label="迟到次数" prop="chi_dao_count" required="true" size="mini" label-width="100px">
+                                                 <inputNumber  v-model="formModel.chi_dao_count"   append="次" ></inputNumber>
+                    </el-form-item>
+                </el-col>  
+                <el-col span="8">
+                    <el-form-item label="迟到时长" prop="chi_dao_num" required="true" size="mini" label-width="100px">
+                         <inputNumber  v-model="formModel.chi_dao_num"   append="分钟" ></inputNumber>
+                    </el-form-item>
+                </el-col>    
+                     <el-col span="8">
+                    <el-form-item label="早退时长" prop="zao_tui_count" required="true" size="mini" label-width="100px">
+                                                 <inputNumber  v-model="formModel.zao_tui_count"   append="分钟" ></inputNumber>
+                    </el-form-item>
+                </el-col> 
+                                  
+            </el-row>
+              
+                          <el-row>
+                <el-col span="8">
+                    <el-form-item label="早退次数" prop="zao_tui_num" required="true" size="mini" label-width="100px">
+                                                 <inputNumber  v-model="formModel.zao_tui_num"   append="次" ></inputNumber>
+                    </el-form-item>
+                </el-col>  
+                <el-col span="8">
+                    <el-form-item label="调休时长" prop="tiao_xiu_num" required="true" size="mini" label-width="100px">
+                        <inputNumber  v-model="formModel.tiao_xiu_num"   append="小时" ></inputNumber>
+                    </el-form-item>
+                </el-col>    
+                     <el-col span="8">
+                    <el-form-item label="事假时长" prop="shi_jia_num" required="true" size="mini" label-width="100px">
+                         <inputNumber  v-model="formModel.shi_jia_num"   append="小时" ></inputNumber>
+                    </el-form-item>
+                </el-col> 
+                                  
+            </el-row>
+                      <el-row>
+                <el-col span="8">
+                    <el-form-item label="病假时长" prop="sick_num" required="true" size="mini" label-width="100px">
+                        <inputNumber  v-model="formModel.sick_num"   append="小时" ></inputNumber>
+                    </el-form-item>
+                </el-col>  
+                <el-col span="8">
+                    <el-form-item label="年假时长" prop="annual_leave_num" required="true" size="mini" label-width="100px">
+                         <inputNumber  v-model="formModel.annual_leave_num"   append="小时" ></inputNumber>
+                    </el-form-item>
+                </el-col>    
+                     <el-col span="8">
+                    <el-form-item label="带薪假" prop="dai_xin_shi_jia_num" required="true" size="mini" label-width="100px">
+                        <inputNumber  v-model="formModel.dai_xin_shi_jia_num"   append="小时" ></inputNumber>
+                    </el-form-item>
+                </el-col> 
+                                  
+            </el-row>
+                      <el-row>
+                <el-col span="8">
+                    <el-form-item label="陪产假" prop="pei_chan_jia_num" required="true" size="mini" label-width="100px">
+                                                 <inputNumber  v-model="formModel.pei_chan_jia_num"   append="天" ></inputNumber>
+                    </el-form-item>
+                </el-col>  
+                <el-col span="8">
+                    <el-form-item label="产假" prop="chan_jia_num" required="true" size="mini" label-width="100px">
+                         <inputNumber  v-model="formModel.chan_jia_num"   append="天" ></inputNumber>
+                    </el-form-item>
+                </el-col>    
+                     <el-col span="8">
+                    <el-form-item label="婚假" prop="hun_jia_num" required="true" size="mini" label-width="100px">
+                                                 <inputNumber  v-model="formModel.hun_jia_num"   append="天" ></inputNumber>
+                    </el-form-item>
+                </el-col> 
+                                  
+            </el-row>
+                      <el-row>
+                <el-col span="8">
+                    <el-form-item label="丧假" prop="sang_jia_num" required="true" size="mini" label-width="100px">
+                         <inputNumber  v-model="formModel.sang_jia_num"   append="天" ></inputNumber>
+                    </el-form-item>
+                </el-col>  
+                <el-col span="8">
+                    <el-form-item label="旷工" prop="kuang_gong_num" required="true" size="mini" label-width="100px">
+                                                <inputNumber  v-model="formModel.kuang_gong_num"   append="天" ></inputNumber>
+                    </el-form-item>
+                </el-col>    
+                     <el-col span="8">
+                    <el-form-item label="考勤空白" prop="kong_bai_num" required="true" size="mini" label-width="100px">
+                         <inputNumber  v-model="formModel.kong_bai_num"   append="次数" ></inputNumber>
+                    </el-form-item>
+                </el-col> 
+                                  
+            </el-row>
        
        <bottomBar @onSave="handleSave"></bottomBar>
           
@@ -169,25 +156,31 @@ import bottomBar from    '../../components/common/BottomBar.vue'
             return {
                 message: 'first',
                 showHeader: false,
-                active_tab_name:"baseinfo",
-                allcontact_titles: ['先生','女士','老板'],
                 formModel:{                    
-                    tenant_id:"112",
-                    full_name:"",
-                    simple_name:"",
-                    contact_name:"",
-                    contact_title:"",
-                    contact_phone:"",
-                    contact_mobile:"",
-                    contact_email:"",
-                    tenant_start_time:new Date(),
-                    tenant_end_time:new Date("9999-12-31"),
-                    payroll_day:"31",                    
-                    hr_source:"",
-                    att_source:"",
-                    buy_she_bao:"normal",
-                    she_bao_rate:8,
-                    house_rate:5
+                    id: "",
+                    tenant_id: "207fa1a9-160c-4943-a89b-8fa4db0547ce",
+                    person_id: "00d7094d-7d2b-48db-94aa-3c02fc1c0eff",
+                    month_id: "201910",
+                    real_name: "李志刚",
+                    dept_name: "李志刚团队",
+                    chi_dao_count: 1,
+                    chi_dao_num: 2,
+                    zao_tui_count: 3,
+                    zao_tui_num: 4,
+                    tiao_xiu_num: 3,
+                    shi_jia_num: 1,
+                    sick_num: 0,
+                    bu_rv_jia_num: 0,
+                    pei_chan_jia_num: 0,
+                    chan_jia_num: 0,
+                    hun_jia_num: 0,
+                    sang_jia_num: 0,
+                    kuang_gong_num: 0,
+                    kong_bai_num: 0,
+                    dai_xin_shi_jia_num: 0,
+                    plan_work_day: 23,
+                    actual_work_day: 22,
+                    annual_leave_num: 0,
                 },
                 query:{
                     tenant_id:localStorage.getItem('user_tenant_id'),
@@ -198,53 +191,12 @@ import bottomBar from    '../../components/common/BottomBar.vue'
                 payrollData:[ ],
                 attData:[],              
                 rules:{
-                    full_name:[
-                        {required: true, message: '必填', trigger: 'blur'}    
-                    ],
-                     simple_name:[
-                        {required: true, message: '必填', trigger: 'blur'}   
-                    ],  
-                    contact_name:[
-                        {required: true, message: '必填', trigger: 'blur'}    
-                    ],
-                    contact_title:[
-                        {required: true, message: '必填', trigger: 'blur'}    
-                    ],
-                    contact_mobile:[
-                        {required: true, message: '必填', trigger: 'blur'}
-                    ],           
-                    tenant_start_time:[
-                        {required: true, message: '必填', trigger: 'blur'}    
-                    ],
-                    tenant_end_time:[
-                        {required: true, message: '必填', trigger: 'blur'}    
-                    ],
-                    DayIndex:[
-                        {required: true, message: '必填', trigger: 'blur'}    
-                    ],
-                    hr_source:[
-                        {required: true, message: '必填', trigger: 'blur'}    
-                    ],
-                    att_source:[
-                        {required: true, message: '必填', trigger: 'blur'}    
-                    ],
-                    buy_she_bao:[
-                        {required: true, message: '必填', trigger: 'blur'}    
-                    ],
-                    she_bao_rate:[
-                        {required: true, message: '必填', trigger: 'blur'}    
-                    ],
-                    house_rate:[
-                        {required: true, message: '必填', trigger: 'blur'}    
-                    ],
-                    contact_email:[
-                         { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
-                    ]
+                   
                 }
             }
         },
         mounted(){  
-            this.$fetch('tenant/' + localStorage.getItem('user_tenant_id'))
+            this.$fetch('attendance/' + this.$route.query.id)
                     .then((response) => {
                         console.log(response);
                         this.formModel=response.data;                        

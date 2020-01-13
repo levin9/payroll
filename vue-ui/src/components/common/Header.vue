@@ -57,7 +57,7 @@ export default {
             fullscreen: false,
             name: 'linxin',
             message: 2,
-            TenantAppName:getTenantName()
+            TenantAppName:this.getTenantName()
         };
     },
     created(){
