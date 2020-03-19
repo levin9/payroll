@@ -59,7 +59,7 @@ func (m *Messagerequest) Update() (err error) {
 func (m *Messagerequest) Create() (err error) {
 	//m.Id = 0
     
-	return mysqlDB.Create(m).Error
+	return MysqlDB.Create(m).Error
 }
 //Delete，删除
 func (m *Messagerequest) Delete() (err error) {

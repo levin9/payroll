@@ -96,7 +96,7 @@ func (o *ImportAttendanceService) Import(input models.AttImportInput) error {
 			xlsx.SetCellStyle(sheetName, fmt.Sprintf("A%v", rIndex+1), fmt.Sprintf("AA%v", rIndex+1), style)
 		} else {
 			if insertFlag {
-				personAtt.Id = utils.ToNewID()
+				personAtt.Id = utils.NewID()
 				personAtt.Create()
 			} else {
 				//personAtt.FMo

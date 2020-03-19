@@ -12,6 +12,7 @@
              </div>                
         </div>
         <div class="container">
+        <div class="handle-box" style=" margin-top:-20px; margin-bottom:10px;" >
           <el-form ref="form" :model="formModel" label-width="100px" >
             <el-tabs type="border-card" v-model="active_tab_name" @tab-click="tabclick" >
                 <el-tab-pane label="基本信息" name="baseinfo">
@@ -185,7 +186,7 @@
           
         </el-form>
           
-        </div>
+        </div></div>
     </div>
 </template>
 
@@ -331,14 +332,16 @@ import bottomBar from    '../../components/common/BottomBar.vue'
                 this.$router.go(-1);
             },
             handleSave(formModel){
+                console.log('ddddddddddddddd');
                 this.$refs['form'].validate((valid) => {
                 if (!valid) {
                     return false
                 } else {
+                    console.log('else')
                     this.$patch('tenant',this.formModel)
                     .then((response) => {
                         console.log(response);
-                        this.$message.success(`修改成功`);
+                        this.$message.success(`修改成功_tenant`);
                     }).catch(function(error){
                         console.log(error);
                         alert('error..');

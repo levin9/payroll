@@ -60,7 +60,7 @@ func (m *Basemonth) Update() (err error) {
 func (m *Basemonth) Create() (err error) {
 	//m.Id = 0
     
-	return mysqlDB.Create(m).Error
+	return MysqlDB.Create(m).Error
 }
 //Delete，删除
 func (m *Basemonth) Delete() (err error) {

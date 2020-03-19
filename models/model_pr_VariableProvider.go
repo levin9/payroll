@@ -12,7 +12,7 @@ func (o *VariableProvider) GetAll(TenantId string) map[string]string {
 	result := make(map[string]string)
 	//list, total, err := mdl.All(query)
 	//fmt.Println("eeeeeeeeeeeeeeeeeee")
-	mysqlDB.Raw(" Select * from sa_element").Scan(&list)
+	MysqlDB.Raw(" Select * from sa_element").Scan(&list)
 	for _, v := range *list {
 		result[v.Elemcode] = v.Elemname
 		//fmt.Println(v.Elemname)

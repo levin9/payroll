@@ -46,7 +46,9 @@ func ToFloat64(str string) float64 {
 	}
 	return result
 }
-func ToNewID() string {
+
+//NewID
+func NewID() string {
 	id := uuid.NewV4()
 	return id.String()
 }

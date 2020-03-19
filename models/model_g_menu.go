@@ -51,7 +51,7 @@ func (m *GMenu) Update() (err error) {
 func (m *GMenu) Create() (err error) {
 	//m.Id = 0
     
-	return mysqlDB.Create(m).Error
+	return MysqlDB.Create(m).Error
 }
 //Delete，删除
 func (m *GMenu) Delete() (err error) {

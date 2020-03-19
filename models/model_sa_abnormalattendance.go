@@ -60,7 +60,7 @@ func (m *Abnormalattendance) Update() (err error) {
 func (m *Abnormalattendance) Create() (err error) {
 	//m.Id = 0
     
-	return mysqlDB.Create(m).Error
+	return MysqlDB.Create(m).Error
 }
 //Delete，删除
 func (m *Abnormalattendance) Delete() (err error) {

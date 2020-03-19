@@ -50,7 +50,7 @@ func (m *GUser) Update() (err error) {
 func (m *GUser) Create() (err error) {
 	//m.Id = 0
     
-	return mysqlDB.Create(m).Error
+	return MysqlDB.Create(m).Error
 }
 //Delete，删除
 func (m *GUser) Delete() (err error) {

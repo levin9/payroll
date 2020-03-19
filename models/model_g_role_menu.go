@@ -46,7 +46,7 @@ func (m *GRoleMenu) Update() (err error) {
 func (m *GRoleMenu) Create() (err error) {
 	//m.Id = 0
     
-	return mysqlDB.Create(m).Error
+	return MysqlDB.Create(m).Error
 }
 //Delete，删除
 func (m *GRoleMenu) Delete() (err error) {

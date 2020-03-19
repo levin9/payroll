@@ -46,7 +46,7 @@ func DoQuery(sqlInfo string, args ...interface{}) ([]map[string]interface{}, err
 }
 
 // func ExecuteMap(sqlInfo string, args ...interface{}) ([]map[string]interface{}, error) {
-// 	rows := mysqlDB.Raw(sqlInfo, args...)
+// 	rows := MysqlDB.Raw(sqlInfo, args...)
 // 	columns := getFieldNames(sqlInfo)
 
 // 	// if err != nil {

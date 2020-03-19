@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"strconv"
 	"strings"
-	
+
 	"github.com/jinzhu/gorm"
 )
 
@@ -24,11 +24,11 @@ type PaginationQuery struct {
 
 func CreateCondition(MonthId, TenantId string) *PaginationQuery {
 	query := PaginationQuery{}
-	query.Where = " MonthId='" + MonthId+"' and TenantId='" + TenantId +"'"
-	query.PageIndex=0
-	query.PageSize=1000
-	query.Limit=1000
-	query.Offset=0
+	query.Where = " MonthId='" + MonthId + "' and TenantId='" + TenantId + "'"
+	query.PageIndex = 0
+	query.PageSize = 1000
+	query.Limit = 1000
+	query.Offset = 0
 	return &query
 }
 
@@ -128,20 +128,27 @@ func crudGetAll(m interface{}, q *PaginationQuery, list interface{}) (total uint
 }
 
 func crudGetByMap(m map[string]interface{}, list interface{}) (err error) {
-	mysqlDB.Where(m).Find(&list)
+	MysqlDB.Where(m).Find(&list)
 	return nil
 	//db.Where(map[string]interface{}{"name": "jinzhu", "age": 20}).Find(&users)
 }
 
 func crudOne(m interface{}, one interface{}) (err error) {
-	if mysqlDB.Where(m).First(one).RecordNotFound() {
+	if MysqlDB.Where(m).First(one).RecordNotFound() {
 		return errors.New("resource is not found")
 	}
 	return nil
 }
 
+func crudFind(m interface{}, where map[string]interface{}) (err error) {
+	// if MysqlDB.Where(m).First(one).RecordNotFound() {
+	// 	return errors.New("resource is not found")
+	// }
+	return nil
+}
+
 func crudUpdate(m interface{}, where interface{}) (err error) {
-	db := mysqlDB.Model(where).Updates(m)
+	db := MysqlDB.Model(m).Where(where).Updates(m)
 	if err = db.Error; err != nil {
 		return
 	}
@@ -154,7 +161,7 @@ func crudUpdate(m interface{}, where interface{}) (err error) {
 func crudDelete(m interface{}) (err error) {
 	//WARNING When delete a record, you need to ensure it’s primary field has value, and GORM will use the primary key to delete the record, if primary field’s blank, GORM will delete all records for the model
 	//primary key must be not zero value
-	db := mysqlDB.Delete(m)
+	db := MysqlDB.Delete(m)
 	if err = db.Error; err != nil {
 		return
 	}
@@ -164,7 +171,7 @@ func crudDelete(m interface{}) (err error) {
 	return nil
 }
 func getResourceCount(m interface{}, q *PaginationQuery) (uint, *gorm.DB) {
-	var tx = mysqlDB.Model(m)
+	var tx = MysqlDB.Model(m)
 	conditions := strings.Split(q.Where, ",")
 	for _, val := range conditions {
 		w := strings.SplitN(val, ":", 2)
@@ -199,7 +206,7 @@ func getResourceCount(m interface{}, q *PaginationQuery) (uint, *gorm.DB) {
 }
 
 func getSqlCount(m interface{}, q *PaginationQuery) (uint, *gorm.DB) {
-	var tx = mysqlDB.Model(m)
+	var tx = MysqlDB.Model(m)
 	tx.Where(q.Where)
 	modelName := getType(m)
 	rKey := redisPrefix + modelName + q.String() + "_count"

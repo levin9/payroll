@@ -55,7 +55,7 @@ func (m *Bankaccount) Update() (err error) {
 func (m *Bankaccount) Create() (err error) {
 	//m.Id = 0
     
-	return mysqlDB.Create(m).Error
+	return MysqlDB.Create(m).Error
 }
 //Delete，删除
 func (m *Bankaccount) Delete() (err error) {

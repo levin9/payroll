@@ -11,7 +11,9 @@ import (
 
 //redis client
 var redisDB *redis.Client
-var mysqlDB *gorm.DB
+var MysqlDB *gorm.DB
+
+//var DB *gorm.DB
 
 const redisPrefix = "ginbro:"
 
@@ -28,34 +30,35 @@ func init() {
 			logrus.WithError(err).Fatal("could not connect to the redis server")
 		}
 	}
+	//fmt.Println(DB)
 
 	//init mysql
 	conn := fmt.Sprintf("%s:%s@(%s)/%s?charset=%s&parseTime=True&loc=Local", viper.GetString("mysql.user"),
 		viper.GetString("mysql.password"), viper.GetString("mysql.addr"), viper.GetString("mysql.database"),
 		viper.GetString("mysql.charset"))
 	if db, err := gorm.Open("mysql", conn); err == nil {
-		mysqlDB = db
+		MysqlDB = db
 	} else {
 		logrus.WithError(err).Fatalln("initialize mysql database failed")
 	}
 	//enable Gorm mysql log
 	if flag := viper.GetBool("app.enable_sql_log"); flag {
-		mysqlDB.LogMode(flag)
+		MysqlDB.LogMode(flag)
 		//f, err := os.OpenFile("mysql_gorm.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 		//if err != nil {
 		//	logrus.WithError(err).Fatalln("could not create mysql gorm log file")
 		//}
 		//logger :=  New(f,"", Ldate)
-		//mysqlDB.SetLogger(logger)
+		//MysqlDB.SetLogger(logger)
 	}
-	//mysqlDB.AutoMigrate()
+	//MysqlDB.AutoMigrate()
 
 }
 
 //Close clear db collection
 func Close() {
-	if mysqlDB != nil {
-		mysqlDB.Close()
+	if MysqlDB != nil {
+		MysqlDB.Close()
 	}
 	if redisDB != nil {
 		redisDB.Close()

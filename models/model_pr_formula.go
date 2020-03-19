@@ -24,7 +24,7 @@ func (m *TenantFormulaService) GetTenantMap(TenantId string) (list *[]TenantPayr
 	//var tx *gorm.DB
 	list = &[]TenantPayrollCfg{}
 	sql := "select  a.PayrollId,b.TenantPayrollName,a.FieldName,a.StandardFieldName,b.TenantFormula,a.IsHandCalc  from sa_payroll a inner join sa_tenantpayroll b on a.PayrollId=b.PayrollId where TenantId is not NULL and b.IsUsed>0 ORDER BY b.F_SortCode asc "
-	mysqlDB.Raw(sql).Scan(&list)
+	MysqlDB.Raw(sql).Scan(&list)
 
 	return list, nil
 }
@@ -33,7 +33,7 @@ func (m *TenantFormulaService) GetTenantAttCfg(TenantId string) (list *[]TenantA
 	//var tx *gorm.DB
 	list = &[]TenantAttCfg{}
 	sql := "select a.HolidayCode,b.TenantHolidayName,AttFieldName,a.FieldName,b.TenantFormula from sa_attcategory a inner join sa_attcategorytenant b on a.HolidayCode=b.HolidayCode where b.IsUsed=1 order by b.F_SortCode asc  "
-	mysqlDB.Raw(sql).Scan(&list)
+	MysqlDB.Raw(sql).Scan(&list)
 
 	return list, nil
 }
@@ -117,7 +117,7 @@ inner join sa_personal c on c.PersonId=a.PersonId
 inner join sa_basemonth d on d.MonthId=a.MonthId and d.TenantID=a.TenantId
 where b.InvalidDate>d.StartDate   `
 	list = &[]CalcVarItem{}
-	mysqlDB.Raw(sql).Scan(&list)
+	MysqlDB.Raw(sql).Scan(&list)
 
 	return list
 }

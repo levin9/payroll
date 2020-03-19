@@ -116,7 +116,7 @@ func (m *Monthpayroll) Update() (err error) {
 func (m *Monthpayroll) Create() (err error) {
 	//m.Id = 0
 
-	return mysqlDB.Create(m).Error
+	return MysqlDB.Create(m).Error
 }
 
 //Delete，删除

@@ -12,7 +12,8 @@
              </div>                
         </div>
         <div class="container">
-          <el-form ref="form" :model="formModel" :rules="rules" label-width="100px" width=60%>
+              <div class="handle-box" style="margin-top:-20px; margin-bottom:10px;" >
+          <el-form ref="form" :model="formModel"  label-width="100px" width=60%>
             <el-tabs type="border-card">
                 <el-tab-pane label="用户信息">
                      <el-row>
@@ -149,7 +150,8 @@
             <bottomBar @onSave="handleSave"></bottomBar>
            </el-form>
           
-        </div>
+        
+        </div></div>
     </div>
 </template>
 
@@ -166,6 +168,8 @@ import bottomBar from    '../../components/common/BottomBar.vue'
             return {
                 message: 'first',
                 formModel:{
+                    person_id:'',
+                    tenant_id:localStorage.getItem('user_tenant_id'),
                     real_name:'',                  
                     job_no:'',
                     dept_name:'',
@@ -175,7 +179,7 @@ import bottomBar from    '../../components/common/BottomBar.vue'
                     regular_date:'',
                     status:'',
                     mobile:'',
-                    email:'',                                    
+                    email:'',                                   
             
                     bank_name:'',
                     bank_branch:'',
@@ -226,34 +230,14 @@ import bottomBar from    '../../components/common/BottomBar.vue'
                      job_no:[
                         {required: true, message: '必填', trigger: 'blur'},
                         {min: 2,max: 20,message: '长度在 2 到 6 个字符' }
-                    ],
-                    dept_name:[
-                        {required: true, message: '必填', trigger: 'blur'},
-                        {min: 2,max: 20,message: '长度在 2 到 6 个字符' }
-                    ],
-                     mobile:[
-                        {required: true, message: '必填', trigger: 'blur'},
-                        {min: 8,max: 20,message: '长度在 8 到 20 个字符' }
-                    ],
-                    join_date:[
-                        {required: true, message: '必填', trigger: 'blur'}
-    
-                    ],
-                    monthly_pay_amount:[
-                        {required: true, message: '必填', trigger: 'blur'}    
-                    ],
-                    valid_date:[
-                        {required: true, message: '必填', trigger: 'blur'}    
-                    ],
-                    email:[
-                        { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
-                    ]
+                    ]                    
                 }
             }
         },
         mounted(){  
             this.$fetch('personal/' + this.$route.query.id )
                 .then((response) => {        
+                    this.formModel.person_id=response.data.person_id;
                     this.formModel.real_name=response.data.real_name;                 
                     this.formModel.job_no=response.data.job_no;       
                     this.formModel.dept_name=response.data.dept_name;       
@@ -296,7 +280,7 @@ import bottomBar from    '../../components/common/BottomBar.vue'
                 }).catch(function(error){           
                     alert('error..');
                 }); 
-            this.$fetch('personfreetax/' + this.$route.query.id )
+            this.$fetch('singletax/207fa1a9-160c-4943-a89b-8fa4db0547ce/' + this.$route.query.id )
                 .then((response) => {   
                     if (response.code==1){
                         this.formModel.znjy=response.data.znjy;  
@@ -320,35 +304,28 @@ import bottomBar from    '../../components/common/BottomBar.vue'
                     alert('error..');
                 }); 
         },
-        methods: {
-            
+        methods: {            
             handleSave(formModel){
-                this.$refs['form'].validate((valid) => {
-                if (!valid) {
-                    return false
-                } else {
-                    /*
-                    this.$post('/api/v2/movie/top250',this.formModel)
+                alert('dddd');
+                alert(this.$refs['form']);
+                // this.$refs['form'].validate((valid) => {        
+                //     alert(valid);
+                // });
+                console.log(this.formModel);
+                console.log('开始post对象');
+
+                this.$post('modifypersonalinfo',this.formModel)
                     .then((response) => {
                         console.log(response);
-                    });      
-                    */             
-
-                    //console.log(this.formModel);
-                    SavePersonal(this.formModel).then((response)=>{
                         this.$message.success(`修改成功`);
-                    })
-                    .catch((err)=>{
-                        console.log(err);
-                    });
-                  
-                    //alert('success');
-                    //this.dialogUpdateVisible = false;
-                    
-                    //this.$set(this.tableData, this.idx, this.form);
-                }
-            })
+                    }).catch(function(error){
+                        console.log('error对象是：')
+                        console.log(error);
+                        alert('error..');
+                    }); 
+                    console.log(this.formModel);
 
+                alert('sdfs');
             },
             handleDel(index) {
                 const item = this.read.splice(index, 1);

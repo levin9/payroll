@@ -48,7 +48,7 @@ func (m *GDemo) Update() (err error) {
 func (m *GDemo) Create() (err error) {
 	//m.Id = 0
     
-	return mysqlDB.Create(m).Error
+	return MysqlDB.Create(m).Error
 }
 //Delete，删除
 func (m *GDemo) Delete() (err error) {

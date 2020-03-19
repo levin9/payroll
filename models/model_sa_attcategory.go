@@ -59,7 +59,7 @@ func (m *Attcategory) Update() (err error) {
 func (m *Attcategory) Create() (err error) {
 	//m.Id = 0
     
-	return mysqlDB.Create(m).Error
+	return MysqlDB.Create(m).Error
 }
 //Delete，删除
 func (m *Attcategory) Delete() (err error) {

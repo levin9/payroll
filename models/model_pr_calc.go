@@ -37,5 +37,5 @@ func (o *UpdatePayrollDao) SaveChange() {
 	sql = sql + " ,F_ModifyDate=now() ,F_ModifyUserName='" + o.CreateBy + "' "
 	sql = sql + " where id='" + o.Id + "'"
 	fmt.Println(sql)
-	mysqlDB.Exec(sql)
+	MysqlDB.Exec(sql)
 }

@@ -55,7 +55,7 @@ func (m *Basepayroll) Update() (err error) {
 func (m *Basepayroll) Create() (err error) {
 	//m.Id = 0
     
-	return mysqlDB.Create(m).Error
+	return MysqlDB.Create(m).Error
 }
 //Delete，删除
 func (m *Basepayroll) Delete() (err error) {

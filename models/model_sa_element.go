@@ -46,7 +46,7 @@ func (m *Element) Update() (err error) {
 func (m *Element) Create() (err error) {
 	//m.Id = 0
     
-	return mysqlDB.Create(m).Error
+	return MysqlDB.Create(m).Error
 }
 //Delete，删除
 func (m *Element) Delete() (err error) {

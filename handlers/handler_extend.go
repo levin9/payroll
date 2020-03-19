@@ -17,7 +17,32 @@ func init() {
 	groupApi.POST("calculatepayroll", CalculatePayroll)
 	groupApi.GET("loadvariable/:id", LoadVariable)
 	groupApi.POST("downloadAttendance", downloadAttendance)
+	groupApi.POST("modifypersonalinfo", UpdatePersonal)
 
+	groupApi.GET("singletax/:tenantid/:personid", GetSinglePersonFreeTax)
+
+}
+
+func GetSinglePersonFreeTax(c *gin.Context) {
+	var mdl models.Personfreetax
+	mdl.Personid = c.Param("personid")
+	mdl.Tenantid = c.Param("tenantid")
+
+	data, err := mdl.One()
+	if handleError(c, err) {
+		return
+	}
+	jsonData(c, data)
+}
+
+func UpdatePersonal(c *gin.Context) {
+	var para blls.PersonalInput
+	err := c.ShouldBind(&para)
+	if handleError(c, err) {
+		return
+	}
+	blls.UpdatePersonal(para)
+	jsonData(c, "data")
 }
 
 //CalculatePayroll
@@ -57,7 +82,6 @@ func downloadAttendance(c *gin.Context) {
 	c.Header("Content-Description", "File Transfer")
 	c.Header("Content-Disposition", "attachment; filename=contacts.xlsx")
 	c.Data(http.StatusOK, "text/xlsx", buf.Bytes())
-	
 
 }
 

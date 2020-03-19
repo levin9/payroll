@@ -8,7 +8,7 @@
             </el-breadcrumb>
         </div>
         <div class="container">
-            <div class="handle-box" style="text-align:center; margin-top:-20px; margin-bottom:40px;" >
+            <div class="handle-box" style="text-align:center; margin-top:-20px; margin-bottom:10px;" >
                  <el-col  :span="6">
                     <el-input placeholder="请输入内容" v-model="query.name"  class="input-with-select">                 
                     <el-button slot="append" icon="el-icon-search" ></el-button>

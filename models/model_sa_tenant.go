@@ -69,7 +69,7 @@ func (m *Tenant) Update() (err error) {
 func (m *Tenant) Create() (err error) {
 	//m.Id = 0
     
-	return mysqlDB.Create(m).Error
+	return MysqlDB.Create(m).Error
 }
 //Delete，删除
 func (m *Tenant) Delete() (err error) {
